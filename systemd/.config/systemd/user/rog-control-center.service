@@ -4,9 +4,10 @@ After=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/rog-control-center
+ExecStartPre=/bin/sleep 5
+ExecStart=/usr/bin/uwsm-app -- /usr/bin/rog-control-center
 Restart=always
-RestartSec=3
+RestartSec=5
 
 [Install]
 WantedBy=default.target
