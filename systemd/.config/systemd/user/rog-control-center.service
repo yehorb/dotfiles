@@ -1,0 +1,12 @@
+[Unit]
+Description=ROG Control Center
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/rog-control-center
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target
