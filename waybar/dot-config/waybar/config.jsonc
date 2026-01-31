@@ -62,9 +62,9 @@
     "on-click-right": "alacritty"
   },
   "custom/gpu": {
-    "format": "{text}",
     "interval": 5,
-    "exec": "$HOME/.config/waybar/gpu-monitor.sh"
+    "exec": "$HOME/.config/waybar/gpu-monitor.sh",
+    "return-type": "json"
   },
   "clock": {
     "format": "{:L%A %H:%M}",
