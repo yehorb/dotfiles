@@ -6,6 +6,7 @@ if omarchy-cmd-present supergfxctl; then
   state="$mode:$status"
   template='{"text": "%s", "tooltip": "%s"}'
   case "$state" in
+  Integrated:dgpu_disabled) printf "$template" " " "$state" ;;
   Integrated:off) printf "$template" " " "$state" ;;
   Integrated:*) printf "$template" " " "$state" ;;
   Hybrid:active) printf "$template" " " "$state" ;;
