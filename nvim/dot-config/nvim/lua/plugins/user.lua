@@ -1,4 +1,4 @@
 return {
-  { "user/ukrainian", dev = true },
   { "user/rust", dev = true },
+  { "user/ukrainian", dev = true, event = "InsertEnter" },
 }
