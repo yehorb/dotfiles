@@ -7,5 +7,14 @@ OnFailure=multi-user.target
 Type=oneshot
 ExecStart=/usr/bin/systemctl --quiet is-active supergfxd.service
 ExecStart=/usr/bin/systemctl stop display-manager.service
+# Also stores the dgpu_disable value once
 ExecStart=/usr/bin/supergfxctl --mode Integrated
 ExecStart=/usr/bin/timeout 30 /bin/bash -c 'sleep 5; until [[ "$(/usr/bin/supergfxctl --get)" == "Integrated" ]]; do sleep 5; done'
+# A user may be required to store the value twice, typcial store first, then
+# rescan PCI bus to activate power, then store a second time to save correctly.
+# The reason for this is that an extra code path in the ACPI is enabled when
+# the device and bus are powered.
+#
+# - linux-6.19-rc7/drivers/platform/x86/asus-wmi.c:776
+ExecStart=/bin/bash "echo 1 >/sys/bus/pci/rescan"
+ExecStart=/bin/bash "echo 1 >/sys/class/firmware-attributes/asus-armoury/attributes/dgpu_disable/current_value"
