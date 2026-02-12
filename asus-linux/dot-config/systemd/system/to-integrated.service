@@ -8,4 +8,4 @@ Type=oneshot
 ExecStart=/usr/bin/systemctl --quiet is-active supergfxd.service
 ExecStart=/usr/bin/systemctl stop display-manager.service
 ExecStart=/usr/bin/supergfxctl --mode Integrated
-ExecStart=/usr/bin/timeout 10 /bin/bash -c 'until [[ "$(/usr/bin/supergfxctl --get)" == "Integrated" ]]; do sleep 1; done'
+ExecStart=/usr/bin/timeout 30 /bin/bash -c 'sleep 5; until [[ "$(/usr/bin/supergfxctl --get)" == "Integrated" ]]; do sleep 5; done'
