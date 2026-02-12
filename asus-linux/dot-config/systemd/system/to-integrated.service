@@ -1,0 +1,10 @@
+[Unit]
+BindsTo=supergfxd.service
+After=supergfxd.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl stop display-manager.service
+ExecStart=/usr/bin/supergfxctl --mode Integrated
+ExecStart=/bin/bash -c 'for i in {1..10}; do sleep 1; [[ "$(/usr/bin/supergfxctl --get)" == "Integrated" ]] && exit 0; done; exit 1'
+ExecStart=/usr/bin/systemctl start display-manager.service
