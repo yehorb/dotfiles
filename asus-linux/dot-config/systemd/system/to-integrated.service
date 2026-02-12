@@ -9,7 +9,8 @@ ExecStart=/usr/bin/systemctl --quiet is-active supergfxd.service
 ExecStart=/usr/bin/systemctl stop display-manager.service
 # Also stores the dgpu_disable value once
 ExecStart=/usr/bin/supergfxctl --mode Integrated
-ExecStart=/usr/bin/timeout 30 /bin/bash -c 'sleep 5; until [[ "$(/usr/bin/supergfxctl --get)" == "Integrated" ]]; do sleep 5; done'
+# supergfxd takes ~20s to store the dgpu_disable once
+ExecStart=/usr/bin/timeout 40 /bin/bash -c 'sleep 5; until [[ "$(/usr/bin/supergfxctl --get)" == "Integrated" ]]; do sleep 5; done'
 # A user may be required to store the value twice, typcial store first, then
 # rescan PCI bus to activate power, then store a second time to save correctly.
 # The reason for this is that an extra code path in the ACPI is enabled when
