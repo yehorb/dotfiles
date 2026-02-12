@@ -1,0 +1,11 @@
+[Unit]
+After=supergfxd.service
+OnSuccess=graphical.target
+OnFailure=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl --quiet is-active supergfxd.service
+ExecStart=/usr/bin/systemctl stop display-manager.service
+ExecStart=/usr/bin/supergfxctl --mode Hybrid
+ExecStart=/usr/bin/timeout 30 /bin/bash -c 'sleep 5; until [[ "$(/usr/bin/supergfxctl --get)" == "Hybrid" ]]; do sleep 5; done'
