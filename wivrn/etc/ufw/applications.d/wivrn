@@ -1,0 +1,4 @@
+[WiVRn]
+title=WiVRn
+description=The Linux OpenXR streaming application to standalone headsets
+ports=5353/udp|9757
