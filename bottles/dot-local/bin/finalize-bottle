@@ -1,0 +1,10 @@
+#!/bin/bash
+
+RUNNER=~/.var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos-slr/
+BOTTLE=~/.var/app/com.usebottles.bottles/data/bottles/bottles/Crysis/
+
+mkdir -p $BOTTLE/drive_c/openxr
+cp -f $RUNNER/files/share/openxr/wineopenxr64.json $BOTTLE/drive_c/openxr/
+
+cp -f $RUNNER/files/share/default_pfx/drive_c/windows/system32/libvkd3d* $BOTTLE/drive_c/windows/system32/
+cp -f $RUNNER/files/share/default_pfx/drive_c/windows/syswow64/libvkd3d* $BOTTLE/drive_c/windows/syswow64/

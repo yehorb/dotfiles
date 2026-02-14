@@ -1,0 +1,16 @@
+#!/bin/bash
+
+work=$(mktemp -d)
+
+RUNNER=~/.var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos-slr/
+BOTTLE=~/.var/app/com.usebottles.bottles/data/bottles/bottles/Crysis/
+
+find $RUNNER/files/share/default_pfx/drive_c/ -type f -printf '%P\t%s\n' | sort >$work/runner.list
+find $BOTTLE/drive_c/ -type f -printf '%P\t%s\n' | sort >$work/bottle.list
+
+echo "Created sorted files [$work/runner.list] [$work/bottle.list]"
+echo "Files unique to [$work/runner.list] ($RUNNER/files/share/default_pfx/drive_c/)"
+
+comm -2 -3 $work/runner.list $work/bottle.list
+
+rm -r $work
