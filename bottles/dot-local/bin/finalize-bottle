@@ -1,10 +1,13 @@
 #!/bin/bash
 
-RUNNER=~/.var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos-slr/
-BOTTLE=~/.var/app/com.usebottles.bottles/data/bottles/bottles/Crysis/
+BOTTLES_DATA=${BOTTLES_DATA:-$HOME/.var/app/com.usebottles.bottles/data/bottles}
+RUNNER=${RUNNER:-"proton-cachyos-slr"}
+BOTTLE=${BOTTLE:-"Far-Cry"}
+RUNNER_DIR=$BOTTLES_DATA/runners/$RUNNER
+BOTTLE_DIR=$BOTTLES_DATA/bottles/$BOTTLE
 
-mkdir -p $BOTTLE/drive_c/openxr
-cp -f $RUNNER/files/share/openxr/wineopenxr64.json $BOTTLE/drive_c/openxr/
+mkdir -p $BOTTLE_DIR/drive_c/openxr
+cp -f $RUNNER_DIR/files/share/openxr/wineopenxr64.json $BOTTLE_DIR/drive_c/openxr/
 
-cp -f $RUNNER/files/share/default_pfx/drive_c/windows/system32/libvkd3d* $BOTTLE/drive_c/windows/system32/
-cp -f $RUNNER/files/share/default_pfx/drive_c/windows/syswow64/libvkd3d* $BOTTLE/drive_c/windows/syswow64/
+cp -f $RUNNER_DIR/files/share/default_pfx/drive_c/windows/system32/libvkd3d* $BOTTLE_DIR/drive_c/windows/system32/
+cp -f $RUNNER_DIR/files/share/default_pfx/drive_c/windows/syswow64/libvkd3d* $BOTTLE_DIR/drive_c/windows/syswow64/

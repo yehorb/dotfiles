@@ -2,14 +2,17 @@
 
 work=$(mktemp -d)
 
-RUNNER=~/.var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos-slr/
-BOTTLE=~/.var/app/com.usebottles.bottles/data/bottles/bottles/Crysis/
+BOTTLES_DATA=${BOTTLES_DATA:-$HOME/.var/app/com.usebottles.bottles/data/bottles}
+RUNNER=${RUNNER:-"proton-cachyos-slr"}
+BOTTLE=${BOTTLE:-"Far-Cry"}
+RUNNER_DIR=$BOTTLES_DATA/runners/$RUNNER
+BOTTLE_DIR=$BOTTLES_DATA/bottles/$BOTTLE
 
-find $RUNNER/files/share/default_pfx/drive_c/ -type f -printf '%P\t%s\n' | sort >$work/runner.list
-find $BOTTLE/drive_c/ -type f -printf '%P\t%s\n' | sort >$work/bottle.list
+find $RUNNER_DIR/files/share/default_pfx/drive_c/ -type f -printf '%P\t%s\n' | sort >$work/runner.list
+find $BOTTLE_DIR/drive_c/ -type f -printf '%P\t%s\n' | sort >$work/bottle.list
 
 echo "Created sorted files [$work/runner.list] [$work/bottle.list]"
-echo "Files unique to [$work/runner.list] ($RUNNER/files/share/default_pfx/drive_c/)"
+echo "Files unique to [$work/runner.list] ($RUNNER_DIR/files/share/default_pfx/drive_c/)"
 
 comm -2 -3 $work/runner.list $work/bottle.list
 
