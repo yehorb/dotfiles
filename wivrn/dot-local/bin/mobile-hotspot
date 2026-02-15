@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sudo create_ap wlan0 wlan0 'zephyrus-g15' '12334567' -c 149 --ieee80211n --ieee80211ac --ieee80211ax --country US --freq-band 5 --ht_capab "[HT40+]
+require_ht=1
+require_vht=1
+vht_oper_chwidth=1
+vht_oper_centr_freq_seg0_idx=155
+he_oper_chwidth=1
+he_oper_centr_freq_seg0_idx=155"
