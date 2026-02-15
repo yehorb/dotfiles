@@ -7,8 +7,8 @@ ConditionPathIsDirectory=/home/%i/.var/app/com.usebottles.bottles
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/usr/bin/mkdir -p /home/%i/.var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos-slr
-ExecStart=/usr/bin/mount --bind /usr/share/steam/compatibilitytools.d/proton-cachyos-slr/ /home/%i/.var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos-slr/
-ExecStop=/usr/bin/umount /home/%i/.var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos-slr/
+ExecStart=/usr/bin/mount --bind /usr/share/steam/compatibilitytools.d/proton-cachyos-slr /home/%i/.var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos-slr
+ExecStop=/usr/bin/umount /home/%i/.var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos-slr
 
 [Install]
 WantedBy=multi-user.target
