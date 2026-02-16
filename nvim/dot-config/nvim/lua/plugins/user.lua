@@ -6,6 +6,6 @@ local dir = function(name)
 end
 
 return {
-  { dir = dir("rust") },
+  { dir = dir("rust"), ft = "rust" },
   { dir = dir("ukrainian"), event = "InsertEnter" },
 }
