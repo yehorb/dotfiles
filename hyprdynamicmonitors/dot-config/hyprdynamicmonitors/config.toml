@@ -1,5 +1,5 @@
 [general]
-destination = "$HOME/.dotfiles/hypr/dot-config/hypr/_monitors.conf"
+destination = "$XDG_CONFIG_HOME/hypr/_monitors.conf"
 
 [power_events]
 
@@ -8,3 +8,17 @@ path = "/org/freedesktop/UPower/devices/line_power_AC0"
 
 [[power_events.dbus_signal_match_rules]]
 object_path = "/org/freedesktop/UPower/devices/line_power_AC0"
+
+
+[profiles.external]
+config_file = "$XDG_CONFIG_HOME/hyprdynamicmonitors/hyprconfigs/external.go.tmpl"
+config_file_type = "template"
+[profiles.external.conditions]
+
+[[profiles.external.conditions.required_monitors]]
+description = "Chimei Innolux Corporation 0x1540"
+monitor_tag = "monitor0"
+
+[[profiles.external.conditions.required_monitors]]
+description = "Samsung Electric Company LC32G7xT H4ZN900002"
+monitor_tag = "monitor1"
