@@ -15,7 +15,7 @@ config_file = "hyprconfigs/home.go.tmpl"
 config_file_type = "template"
 [profiles.home.conditions]
 [profiles.home.static_template_values]
-mode = "extend"
+mode = "second_screen"
 
 [[profiles.home.conditions.required_monitors]]
 description = "Chimei Innolux Corporation 0x1540"
