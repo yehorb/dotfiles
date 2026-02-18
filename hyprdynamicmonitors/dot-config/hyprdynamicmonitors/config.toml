@@ -32,3 +32,17 @@ config_file_type = "template"
 [[profiles.pc-screen.conditions.required_monitors]]
 description = "Chimei Innolux Corporation 0x1540"
 monitor_tag = "monitor0"
+
+
+[profiles.extend]
+config_file = "/home/y/.config/hyprdynamicmonitors/hyprconfigs/extend.go.tmpl"
+config_file_type = "template"
+[profiles.extend.conditions]
+
+[[profiles.extend.conditions.required_monitors]]
+description = "Chimei Innolux Corporation 0x1540"
+monitor_tag = "monitor0"
+
+[[profiles.extend.conditions.required_monitors]]
+description = "Samsung Electric Company LC32G7xT H4ZN900002"
+monitor_tag = "monitor1"
