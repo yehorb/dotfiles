@@ -1,5 +1,5 @@
 [general]
-destination = "$XDG_CONFIG_HOME/hypr/_monitors.conf"
+destination = "~/.config/hypr/_monitors.conf"
 
 [power_events]
 
@@ -10,39 +10,27 @@ path = "/org/freedesktop/UPower/devices/line_power_AC0"
 object_path = "/org/freedesktop/UPower/devices/line_power_AC0"
 
 
-[profiles.second-screen]
-config_file = "$XDG_CONFIG_HOME/hyprdynamicmonitors/hyprconfigs/second-screen.go.tmpl"
+[profiles.home]
+config_file = "hyprconfigs/home.go.tmpl"
 config_file_type = "template"
-[profiles.second-screen.conditions]
+[profiles.home.conditions]
+[profiles.home.static_template_values]
+mode = "extend"
 
-[[profiles.second-screen.conditions.required_monitors]]
+[[profiles.home.conditions.required_monitors]]
 description = "Chimei Innolux Corporation 0x1540"
-monitor_tag = "monitor0"
+monitor_tag = "laptop"
 
-[[profiles.second-screen.conditions.required_monitors]]
+[[profiles.home.conditions.required_monitors]]
 description = "Samsung Electric Company LC32G7xT H4ZN900002"
-monitor_tag = "monitor1"
+monitor_tag = "samsung"
 
 
-[profiles.pc-screen]
-config_file = "$XDG_CONFIG_HOME/hyprdynamicmonitors/hyprconfigs/pc-screen.go.tmpl"
+[profiles.laptop]
+config_file = "hyprconfigs/laptop.go.tmpl"
 config_file_type = "template"
-[profiles.pc-screen.conditions]
+[profiles.laptop.conditions]
 
-[[profiles.pc-screen.conditions.required_monitors]]
+[[profiles.laptop.conditions.required_monitors]]
 description = "Chimei Innolux Corporation 0x1540"
-monitor_tag = "monitor0"
-
-
-[profiles.extend]
-config_file = "/home/y/.config/hyprdynamicmonitors/hyprconfigs/extend.go.tmpl"
-config_file_type = "template"
-[profiles.extend.conditions]
-
-[[profiles.extend.conditions.required_monitors]]
-description = "Chimei Innolux Corporation 0x1540"
-monitor_tag = "monitor0"
-
-[[profiles.extend.conditions.required_monitors]]
-description = "Samsung Electric Company LC32G7xT H4ZN900002"
-monitor_tag = "monitor1"
+monitor_tag = "laptop"
