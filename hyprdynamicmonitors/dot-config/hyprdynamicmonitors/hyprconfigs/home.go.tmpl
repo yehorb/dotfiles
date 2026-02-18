@@ -6,12 +6,12 @@
 # If you are using tui to edit, leave this at the end of your file (the last monitor config applies)
 # and leave the markers.
 
-{{ if eq .mode "second-screen" }}
+{{ if eq .mode "second_screen" }}
 monitor=desc:Chimei Innolux Corporation 0x1540,disable
 monitor=desc:Samsung Electric Company LC32G7xT H4ZN900002,2560x1440@144,0x0,1.25,transform,0,vrr,0
 {{ end }}
 
-{{ if eq .mode "pc-screen" }}
+{{ if eq .mode "pc_screen" }}
 monitor=desc:Chimei Innolux Corporation 0x1540,2560x1440@60,auto-right,1.67,transform,0,vrr,0
 monitor=desc:Samsung Electric Company LC32G7xT H4ZN900002,disable
 {{ end }}
