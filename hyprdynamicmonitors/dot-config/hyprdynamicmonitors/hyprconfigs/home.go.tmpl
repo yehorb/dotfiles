@@ -8,18 +8,18 @@
 
 {{ if eq .mode "second_screen" }}
 monitor=desc:Chimei Innolux Corporation 0x1540,disable
-monitor=desc:Samsung Electric Company LC32G7xT H4ZN900002,2560x1440@144,0x0,1.25,transform,0,vrr,0
+monitor=desc:Samsung Electric Company LC32G7xT H4ZN900002,2560x1440@{{ .rr_samsung }},0x0,{{ .scale_samsung }},transform,0,vrr,0
 {{ end }}
 
 {{ if eq .mode "pc_screen" }}
-monitor=desc:Chimei Innolux Corporation 0x1540,2560x1440@60,auto-right,1.67,transform,0,vrr,0
+monitor=desc:Chimei Innolux Corporation 0x1540,2560x1440@{{ .rr_laptop }},auto-right,{{ .scale_laptop }},transform,0,vrr,0
 monitor=desc:Samsung Electric Company LC32G7xT H4ZN900002,disable
 {{ end }}
 
 {{ if eq .mode "extend" }}
 # <<<<< TUI AUTO START
-monitor=desc:Chimei Innolux Corporation 0x1540,2560x1440@60,auto-right,1.67,transform,0,vrr,0
-monitor=desc:Samsung Electric Company LC32G7xT H4ZN900002,2560x1440@144,auto-left,1.25,transform,0,vrr,0
+monitor=desc:Chimei Innolux Corporation 0x1540,2560x1440@{{ .rr_laptop }},auto-right,{{ .scale_laptop }},transform,0,vrr,0
+monitor=desc:Samsung Electric Company LC32G7xT H4ZN900002,2560x1440@{{ .rr_samsung }},auto-left,{{ .scale_samsung }},transform,0,vrr,0
 # <<<<< TUI AUTO END
 
 {{ end }}

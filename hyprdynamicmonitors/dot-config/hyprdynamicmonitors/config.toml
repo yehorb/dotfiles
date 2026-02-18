@@ -16,6 +16,10 @@ config_file_type = "template"
 [profiles.home.conditions]
 [profiles.home.static_template_values]
 mode = "second_screen"
+rr_samsung = "144"
+rr_laptop = "60"
+scale_samsung = "1.25"
+scale_laptop = "1.67"
 
 [[profiles.home.conditions.required_monitors]]
 description = "Chimei Innolux Corporation 0x1540"
