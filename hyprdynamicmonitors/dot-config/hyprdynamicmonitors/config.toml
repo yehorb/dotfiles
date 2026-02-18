@@ -1,5 +1,5 @@
 [general]
-destination = "~/.config/hypr/_monitors.conf"
+destination = "$XDG_CONFIG_HOME/hypr/_monitors.conf"
 
 [power_events]
 
