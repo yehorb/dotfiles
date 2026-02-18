@@ -5,9 +5,15 @@
 # (don't mess with these directly, just overwrite them here!)
 source ~/.local/share/omarchy/default/bash/rc
 
+if [ -d "$XDG_CONFIG_HOME/bash.d" ]; then
+  echo "hello"
+fi
+
 # Add your own exports, aliases, and functions here.
 #
 # Make an alias for invoking commands you use constantly
 # alias p='python'
 alias lg='lazygit'
 alias ll='ls -lA'
+
+# vim: filetype=bash
