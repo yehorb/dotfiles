@@ -5,8 +5,10 @@
 # (don't mess with these directly, just overwrite them here!)
 source ~/.local/share/omarchy/default/bash/rc
 
-if [ -d "$XDG_CONFIG_HOME/bash.d" ]; then
-  echo "hello"
+# Source files in users ~/.local/config/bash.d directory if it exists
+dir="$XDG_CONFIG_HOME/bash.d"
+if [[ -d $dir ]]; then
+  for file in "$dir/*"; do source $file; done
 fi
 
 # Add your own exports, aliases, and functions here.
