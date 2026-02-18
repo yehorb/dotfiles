@@ -6,17 +6,17 @@
 # If you are using tui to edit, leave this at the end of your file (the last monitor config applies)
 # and leave the markers.
 
-{{ if eq .mode "second_screen" }}
+{{ if eq .mode "home_second_screen" }}
 monitor=desc:Chimei Innolux Corporation 0x1540,disable
 monitor=desc:Samsung Electric Company LC32G7xT H4ZN900002,2560x1440@{{ .rr_samsung }},0x0,{{ .scale_samsung }},transform,0,vrr,0
 {{ end }}
 
-{{ if eq .mode "pc_screen" }}
+{{ if eq .mode "home_pc_screen" }}
 monitor=desc:Chimei Innolux Corporation 0x1540,2560x1440@{{ .rr_laptop }},auto-right,{{ .scale_laptop }},transform,0,vrr,0
 monitor=desc:Samsung Electric Company LC32G7xT H4ZN900002,disable
 {{ end }}
 
-{{ if eq .mode "extend" }}
+{{ if eq .mode "home_extend" }}
 # <<<<< TUI AUTO START
 monitor=desc:Chimei Innolux Corporation 0x1540,2560x1440@{{ .rr_laptop }},auto-right,{{ .scale_laptop }},transform,0,vrr,0
 monitor=desc:Samsung Electric Company LC32G7xT H4ZN900002,2560x1440@{{ .rr_samsung }},auto-left,{{ .scale_samsung }},transform,0,vrr,0

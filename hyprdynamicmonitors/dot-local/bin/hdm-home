@@ -1,0 +1,23 @@
+#!/bin/bash
+
+mode=$1
+shift
+
+case "$mode" in
+"second_screen")
+  sed -i 's/mode = "home_.*"/mode = "home_second_screen"/' $XDG_CONFIG_HOME/hyprdynamicmonitors/config.toml
+  notify-send "HDM" "Switched to Second screen only"
+  ;;
+"pc_screen")
+  sed -i 's/mode = "home_.*"/mode = "home_pc_screen"/' $XDG_CONFIG_HOME/hyprdynamicmonitors/config.toml
+  notify-send "HDM" "Switched to PC screen only"
+  ;;
+"extend")
+  sed -i 's/mode = "home_.*"/mode = "home_extend"/' $XDG_CONFIG_HOME/hyprdynamicmonitors/config.toml
+  notify-send "HDM" "Switched to Extend"
+  ;;
+*)
+  echo "Unknown mode: $mode."
+  exit 1
+  ;;
+esac
