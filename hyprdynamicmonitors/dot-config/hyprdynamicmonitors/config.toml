@@ -10,25 +10,25 @@ path = "/org/freedesktop/UPower/devices/line_power_AC0"
 object_path = "/org/freedesktop/UPower/devices/line_power_AC0"
 
 
-[profiles.external]
-config_file = "$XDG_CONFIG_HOME/hyprdynamicmonitors/hyprconfigs/external.go.tmpl"
+[profiles.second-screen]
+config_file = "$XDG_CONFIG_HOME/hyprdynamicmonitors/hyprconfigs/second-screen.go.tmpl"
 config_file_type = "template"
-[profiles.external.conditions]
+[profiles.second-screen.conditions]
 
-[[profiles.external.conditions.required_monitors]]
+[[profiles.second-screen.conditions.required_monitors]]
 description = "Chimei Innolux Corporation 0x1540"
 monitor_tag = "monitor0"
 
-[[profiles.external.conditions.required_monitors]]
+[[profiles.second-screen.conditions.required_monitors]]
 description = "Samsung Electric Company LC32G7xT H4ZN900002"
 monitor_tag = "monitor1"
 
 
-[profiles.laptop]
-config_file = "$XDG_CONFIG_HOME/hyprdynamicmonitors/hyprconfigs/laptop.go.tmpl"
+[profiles.pc-screen]
+config_file = "$XDG_CONFIG_HOME/hyprdynamicmonitors/hyprconfigs/pc-screen.go.tmpl"
 config_file_type = "template"
-[profiles.laptop.conditions]
+[profiles.pc-screen.conditions]
 
-[[profiles.laptop.conditions.required_monitors]]
+[[profiles.pc-screen.conditions.required_monitors]]
 description = "Chimei Innolux Corporation 0x1540"
 monitor_tag = "monitor0"
