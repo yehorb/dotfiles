@@ -1,0 +1,11 @@
+# systemd-escape -p --suffix=mount "/home/y/Documents/Zotero"
+[Unit]
+Description=Mount for /home/y/Documents/Zotero
+# https://rclone.org/commands/rclone_mount/
+# https://rclone.org/drive/
+[Mount]
+Type=rclone
+What=drive:Zotero
+Where=/home/y/Documents/Zotero
+# Set RCLONE_DRIVE_ROOT_FOLDER_ID to access data within the "Computers" tab
+Options=rw,args2env,vfs-cache-mode=full,vv,env.RCLONE_DRIVE_ROOT_FOLDER_ID=1DFFyp9rJIljH3YDiIQGx4IehYPO8cnxt
