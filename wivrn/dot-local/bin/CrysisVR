@@ -5,11 +5,11 @@ export __VK_LAYER_NV_optimus=NVIDIA_only
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
 export WINEPREFIX=/home/y/.var/app/com.usebottles.bottles/data/bottles/bottles/Crysis
-export GAMEID=umu-17300
-export STORE=gog
 export PROTONPATH=/usr/share/steam/compatibilitytools.d/proton-cachyos-slr
 
 export PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES=1
 export PRESSURE_VESSEL_FILESYSTEMS_RW=/var/lib/flatpak/app/io.github.wivrn.wivrn
+
+export U_PACING_COMP_MIN_TIME_MS=16
 
 /usr/bin/umu-run /home/y/.var/app/com.usebottles.bottles/data/bottles/bottles/Crysis/drive_c/Crysis/Bin64/CrysisVR.exe
