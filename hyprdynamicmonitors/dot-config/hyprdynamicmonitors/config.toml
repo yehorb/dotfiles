@@ -16,7 +16,7 @@ config_file_type = "template"
 [profiles.home.conditions]
 [profiles.home.static_template_values]
 mode = "home_second_screen"
-rr_samsung = "144"
+rr_samsung = "120"
 rr_laptop = "60"
 scale_samsung = "1.25"
 scale_laptop = "1.67"
