@@ -6,9 +6,11 @@
 source ~/.local/share/omarchy/default/bash/rc
 
 # Source files in users ~/.local/config/bash.d directory if it exists
+# Based on example from $OMARCHY_PATH/default/bash/functions:
+#   for f in $OMARCHY_PATH/default/bash/fns/*; do source "$f"; done
 dir="$XDG_CONFIG_HOME/bash.d"
 if [[ -d $dir ]]; then
-  for file in "$dir/*"; do source $file; done
+  for f in $dir/*; do source "$f"; done
 fi
 
 # Add your own exports, aliases, and functions here.
