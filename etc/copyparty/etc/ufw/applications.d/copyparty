@@ -1,0 +1,4 @@
+[copyparty]
+title=copyparty
+description=Portable file server
+ports=3923/tcp
