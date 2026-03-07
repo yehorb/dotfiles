@@ -1,4 +1,4 @@
-local _dir = vim.fs.joinpath(vim.fn.stdpath("config"), "/pack/user/opt")
+local _dir = vim.fs.joinpath(vim.fn.stdpath("config"), "pack/user/opt")
 ---@param name string
 ---@return string
 local dir = function(name)
