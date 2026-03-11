@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Toggle dedicated vs integrated GPU mode via supergfxd (for hybrid gpu laptops, like Asus G14).
-# Requires reboot to take effect.
 
 # Ensure supergfxctl has been installed
 if omarchy-cmd-missing supergfxctl; then
@@ -23,14 +22,16 @@ CONF
   sudo systemctl enable --now supergfxd
 fi
 
-restart_services_and_wait_for() {
-  local expected_mode="$1"
+if [[ "$1" == "--restart-services" ]]; then
+  local expected_mode="$2"
 
-  sudo systemctl stop display-manager.service
-  sudo systemctl restart supergfxctl.service
-  sudo timeout 40 bash -c "sleep 5; until [[ ""$$(supergfxctl -g)"" == $expected_mode ]]; do sleep 5; done"
-  sudo systemctl start display-manager.service
-}
+  /usr/bin/systemctl stop display-manager.service
+  /usr/bin/systemctl restart supergfxd.service
+  /usr/bin/timeout 40 /bin/bash -c "sleep 5; until [[ ""$$(/usr/bin/supergfxctl --get)"" == $expected_mode ]]; do sleep 5; done"
+  /usr/bin/systemctl start display-manager.service
+
+  exit $?
+fi
 
 gpu_mode=$(supergfxctl -g)
 
@@ -47,7 +48,10 @@ case "$gpu_mode" in
   # Remove the startup delay override (not needed for Hybrid mode)
   sudo rm -rf /etc/systemd/system/supergfxd.service.d/delay-start.conf
 
-  restart_services_and_wait_for "Hybrid"
+  # Re-invoke this script in a detached root process via setsid so it
+  # survives the display manager (and this terminal) being stopped.
+  # sudo credentials are already cached, so no password prompt is needed.
+  setsid sudo bash "$0" --restart-services "Hybrid" &>/dev/null &
   ;;
 "Hybrid")
   echo "Use only integrated GPU?"
@@ -65,7 +69,7 @@ case "$gpu_mode" in
   sudo mkdir -p /etc/systemd/system/supergfxd.service.d
   sudo cp -p $OMARCHY_PATH/default/systemd/system/supergfxd.service.d/delay-start.conf /etc/systemd/system/supergfxd.service.d/
 
-  restart_services_and_wait_for "Integrated"
+  setsid sudo bash "$0" --restart-services "Integrated" &>/dev/null &
   ;;
 *)
   echo "Hybrid GPU not found or in unknown mode."
