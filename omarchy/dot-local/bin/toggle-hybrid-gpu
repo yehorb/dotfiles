@@ -22,18 +22,33 @@ CONF
   sudo systemctl enable --now supergfxd
 fi
 
-if [[ "$1" == "--restart-services" ]]; then
-  expected_mode="$2"
+RESTART_SERVICES=false
+EXPECTED_MODE=""
 
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+  --restart-services)
+    RESTART_SERVICES=true
+    shift
+    ;;
+  --mode)
+    EXPECTED_MODE="$2"
+    shift 2
+    ;;
+  *)
+    shift
+    ;;
+  esac
+done
+
+if [[ "$RESTART_SERVICES" == true ]]; then
   /usr/bin/systemctl stop display-manager.service
   /usr/bin/systemctl restart supergfxd.service
-  /usr/bin/timeout 40 /bin/bash -c "sleep 5; until [[ \"\$(/usr/bin/supergfxctl --get)\" == \"$expected_mode\" ]]; do sleep 5; done"
+  /usr/bin/timeout 40 /bin/bash -c "sleep 5; until [[ \"\$(/usr/bin/supergfxctl --get)\" == \"$EXPECTED_MODE\" ]]; do sleep 5; done"
   /usr/bin/systemctl start display-manager.service
 
   exit $?
 fi
-
-sudo -v || exit 1
 
 gpu_mode=$(supergfxctl -g)
 
@@ -53,7 +68,7 @@ case "$gpu_mode" in
   # Re-invoke this script in a detached root process via setsid so it
   # survives the display manager (and this terminal) being stopped.
   # sudo credentials are already cached, so no password prompt is needed.
-  setsid sudo bash "$0" --restart-services "Hybrid" &>/dev/null &
+  sudo bash -c "/usr/bin/setsid $0 --restart-services --mode Hybrid" &
   ;;
 "Hybrid")
   echo "Use only integrated GPU?"
@@ -71,7 +86,7 @@ case "$gpu_mode" in
   sudo mkdir -p /etc/systemd/system/supergfxd.service.d
   sudo cp -p $OMARCHY_PATH/default/systemd/system/supergfxd.service.d/delay-start.conf /etc/systemd/system/supergfxd.service.d/
 
-  setsid sudo bash "$0" --restart-services "Integrated" &>/dev/null &
+  sudo bash -c "/usr/bin/setsid $0 --restart-services --mode Integrated" &
   ;;
 *)
   echo "Hybrid GPU not found or in unknown mode."
