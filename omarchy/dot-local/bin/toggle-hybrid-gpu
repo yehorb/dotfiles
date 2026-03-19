@@ -43,6 +43,7 @@ done
 
 if [[ "$RESTART_SERVICES" == true ]]; then
   /usr/bin/systemctl stop display-manager.service
+  /usr/bin/systemctl daemon-reload
   /usr/bin/systemctl restart supergfxd.service
   /usr/bin/timeout 40 /bin/bash -c "sleep 5; until [[ \"\$(/usr/bin/supergfxctl --get)\" == \"$EXPECTED_MODE\" ]]; do sleep 5; done"
   /usr/bin/systemctl start display-manager.service
