@@ -7,5 +7,6 @@ end
 
 return {
   { dir = dir("rust"), ft = "rust" },
+  { dir = dir("typst"), ft = "typst" },
   { dir = dir("ukrainian"), event = "InsertEnter" },
 }
