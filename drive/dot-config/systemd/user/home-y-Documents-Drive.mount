@@ -1,0 +1,10 @@
+# systemd-escape -p --suffix=mount "/home/y/Documents/Drive"
+[Unit]
+Description=Mount for /home/y/Documents/Drive
+# https://rclone.org/commands/rclone_mount/
+# https://rclone.org/drive/
+[Mount]
+Type=rclone
+What=drive:
+Where=/home/y/Documents/Drive
+Options=rw,args2env,vv,vfs-cache-mode=full,vfs-cache-max-age=1y,vfs-cache-max-size=10G,env.RCLONE_DRIVE_ROOT_FOLDER_ID=0AHlMRDuCLbvPUk9PVA
