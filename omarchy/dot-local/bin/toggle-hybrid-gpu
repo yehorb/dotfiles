@@ -1,27 +1,6 @@
 #!/bin/bash
 
 # Toggle dedicated vs integrated GPU mode via supergfxd (for hybrid gpu laptops, like Asus G14).
-
-# Ensure supergfxctl has been installed
-if omarchy-cmd-missing supergfxctl; then
-  omarchy-pkg-add supergfxctl
-
-  # Create config before starting service to prevent hang on first boot
-  sudo tee /etc/supergfxd.conf >/dev/null <<'CONF'
-{
-  "mode": "Hybrid",
-  "vfio_enable": true,
-  "vfio_save": false,
-  "always_reboot": false,
-  "no_logind": true,
-  "logout_timeout_s": 180,
-  "hotplug_type": "None"
-}
-CONF
-
-  sudo systemctl enable --now supergfxd
-fi
-
 RESTART_SERVICES=false
 EXPECTED_MODE=""
 
@@ -45,10 +24,30 @@ if [[ "$RESTART_SERVICES" == true ]]; then
   /usr/bin/systemctl stop display-manager.service
   /usr/bin/systemctl daemon-reload
   /usr/bin/systemctl restart supergfxd.service
-  /usr/bin/timeout 40 /bin/bash -c "sleep 5; until [[ \"\$(/usr/bin/supergfxctl --get)\" == \"$EXPECTED_MODE\" ]]; do sleep 5; done"
+  /usr/bin/timeout 40 /bin/bash -c "sleep 10; until [[ \"\$(/usr/bin/supergfxctl --get)\" == \"$EXPECTED_MODE\" ]]; do sleep 5; done"
   /usr/bin/systemctl start display-manager.service
 
   exit $?
+fi
+
+# Ensure supergfxctl has been installed
+if omarchy-cmd-missing supergfxctl; then
+  omarchy-pkg-add supergfxctl
+
+  # Create config before starting service to prevent hang on first boot
+  sudo tee /etc/supergfxd.conf >/dev/null <<'CONF'
+{
+  "mode": "Hybrid",
+  "vfio_enable": true,
+  "vfio_save": false,
+  "always_reboot": false,
+  "no_logind": true,
+  "logout_timeout_s": 180,
+  "hotplug_type": "None"
+}
+CONF
+
+  sudo systemctl enable --now supergfxd
 fi
 
 gpu_mode=$(supergfxctl -g)
