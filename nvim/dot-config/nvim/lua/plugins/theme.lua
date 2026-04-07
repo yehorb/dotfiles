@@ -1,1 +1,1 @@
-/home/y/.config/omarchy/current/theme/neovim.lua
+return {}
