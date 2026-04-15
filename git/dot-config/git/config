@@ -5,6 +5,10 @@
 	br = branch
 	ci = commit
 	st = status
+	cm = commit --message
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	po = push origin
 [init]
 	defaultBranch = master
 [pull]
