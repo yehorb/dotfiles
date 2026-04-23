@@ -5,7 +5,7 @@ export __VK_LAYER_NV_optimus=NVIDIA_only
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
 export WINEPREFIX=/home/y/.var/app/com.usebottles.bottles/data/bottles/bottles/Crysis
-export PROTONPATH=/usr/share/steam/compatibilitytools.d/proton-cachyos-slr
+export PROTONPATH=/mnt/d/Games/SteamLibrary/steamapps/common/Proton\ 11.0
 
 export PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES=1
 export PRESSURE_VESSEL_FILESYSTEMS_RW=/var/lib/flatpak/app/io.github.wivrn.wivrn
