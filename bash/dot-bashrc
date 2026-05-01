@@ -8,7 +8,7 @@ source ~/.local/share/omarchy/default/bash/rc
 # Source files in users ~/.local/config/bash.d directory if it exists
 # Based on example from $OMARCHY_PATH/default/bash/functions:
 #   for f in $OMARCHY_PATH/default/bash/fns/*; do source "$f"; done
-dir="$XDG_CONFIG_HOME/bash.d"
+dir="$HOME/.config/bash.d"
 if [[ -d $dir ]]; then
   for f in $dir/*; do source "$f"; done
 fi
