@@ -32,5 +32,8 @@
 	autoupdate = true        # Apply stored conflict resolutions automatically
 [include]
 	path = config.local      # Machine/user-specific overrides kept out of git
+[core]
+	autocrlf = false
+	eol = lf
 
 # vim: ft=gitconfig
