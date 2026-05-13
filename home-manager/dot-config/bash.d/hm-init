@@ -1,0 +1,10 @@
+if command -v fzf &> /dev/null; then
+  if [[ -f $HOME/.nix-profile/share/fzf/completion.bash ]]; then
+    source $HOME/.nix-profile/share/fzf/completion.bash
+  fi
+  if [[ -f $HOME/.nix-profile/share/fzf/key-bindings.bash ]]; then
+    source $HOME/.nix-profile/share/fzf/key-bindings.bash
+  fi
+fi
+
+# vim: filetype=bash
