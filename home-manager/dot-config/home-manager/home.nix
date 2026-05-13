@@ -34,6 +34,9 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    (pkgs.writeShellScriptBin "ghostty" ''
+      ${pkgs.lib.getExe' inputs.nixgl.packages.${pkgs.stdenv.hostPlatform.system}.nixGLDefault "nixGL"} ${pkgs.lib.getExe pkgs.ghostty}
+    '')
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
