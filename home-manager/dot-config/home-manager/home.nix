@@ -79,7 +79,9 @@
           ghosttyNixgl="$out/share/applications/com.mitchellh.ghosttyNixgl.desktop"
           substitute $ghostty $ghosttyNixgl \
             --replace-fail ${pkgs.lib.getExe pkgs.ghostty} ${pkgs.lib.getExe ghosttyNixgl} \
-            --replace-fail "Name=Ghostty" "Name=Ghostty (nixGL)"
+            --replace-fail "Name=Ghostty" "Name=Ghostty (nixGL)" \
+            --replace-fail "DBusActivatable=true" "DBusActivatable=false"
+          rm $ghostty
         '';
       }
     )
