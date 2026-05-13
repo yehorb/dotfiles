@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -34,9 +39,29 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    (pkgs.writeShellScriptBin "ghostty" ''
-      ${pkgs.lib.getExe' inputs.nixgl.packages.${pkgs.stdenv.hostPlatform.system}.nixGLDefault "nixGL"} ${pkgs.lib.getExe pkgs.ghostty}
-    '')
+    (
+      let
+        nixgl = inputs.nixgl.packages.${pkgs.stdenv.hostPlatform.system}.nixGLDefault;
+        ghosttyNixgl = pkgs.writeShellScriptBin "ghosttyNixgl" /* bash */ ''
+          exec ${pkgs.lib.getExe' nixgl "nixGL"} ${pkgs.lib.getExe pkgs.ghostty} "$@"
+        '';
+      in
+      pkgs.symlinkJoin {
+        name = "ghosttyNixgl";
+        meta.mainPrograms = "ghosttyNixgl";
+        paths = [
+          pkgs.ghostty
+          ghosttyNixgl
+        ];
+        postBuild = /* bash */ ''
+          ghostty="$out/share/applications/com.mitchellh.ghostty.desktop"
+          ghosttyNixgl="$out/share/applications/com.mitchellh.ghosttyNixgl.desktop"
+          substitute $ghostty $ghosttyNixgl \
+            --replace-fail ${pkgs.lib.getExe pkgs.ghostty} ${pkgs.lib.getExe ghosttyNixgl} \
+            --replace-fail "Name=Ghostty" "Name=Ghostty (nixGL)"
+        '';
+      }
+    )
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
