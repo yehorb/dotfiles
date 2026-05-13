@@ -39,6 +39,27 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+    # cli
+    pkgs.bat
+    pkgs.direnv
+    pkgs.fzf
+    pkgs.jq
+    pkgs.lazygit
+    pkgs.ripgrep
+    pkgs.starship
+    pkgs.stow
+    pkgs.unzip
+    pkgs.zoxide
+
+    # nvim
+    pkgs.neovim-unwrapped
+    pkgs.tree-sitter
+
+    # nix
+    pkgs.nixd
+    pkgs.nixfmt
+
     (
       let
         nixgl = inputs.nixgl.packages.${pkgs.stdenv.hostPlatform.system}.nixGLDefault;
