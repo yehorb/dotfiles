@@ -43,6 +43,8 @@
     # cli
     pkgs.bat
     pkgs.direnv
+    pkgs.eza
+    pkgs.fd
     pkgs.fzf
     pkgs.jq
     pkgs.lazygit
@@ -51,6 +53,9 @@
     pkgs.stow
     pkgs.unzip
     pkgs.zoxide
+
+    # tmux
+    pkgs.tmux
 
     # nvim
     pkgs.neovim-unwrapped
