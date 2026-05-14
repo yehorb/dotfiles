@@ -4,11 +4,12 @@ hl.config({
   input = {
     -- Use multiple keyboard layouts and switch between them with Left Alt + Right Alt.
     -- kb_layout = "us,dk,eu",
+    kb_layout = "us,ua",
 
     -- Use a specific keyboard variant if needed (e.g. intl for international keyboards).
     -- kb_variant = "intl",
 
-    kb_options = "compose:caps", -- ,grp:alts_toggle
+    kb_options = "compose:caps,grp:ctrl_space_toggle", -- ,grp:alts_toggle
 
     -- Change speed of keyboard repeat.
     repeat_rate = 40,
@@ -21,11 +22,11 @@ hl.config({
     -- sensitivity = 0.35,
 
     -- Turn off mouse acceleration (default: adaptive).
-    -- accel_profile = "flat",
+    accel_profile = "flat",
 
     touchpad = {
       -- Use natural (inverse) scrolling.
-      -- natural_scroll = true,
+      natural_scroll = true,
 
       -- Use two-finger clicks for right-click instead of lower-right corner.
       clickfinger_behavior = true,
