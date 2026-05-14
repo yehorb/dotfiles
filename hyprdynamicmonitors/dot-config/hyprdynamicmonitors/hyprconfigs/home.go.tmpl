@@ -1,25 +1,53 @@
-# Generated with hyprdynamicmonitors freeze.
-# This is a template that you can edit, it is just a starter that pulled your current monitor setup,
-# adjust as needed.
-# You can use templates here etc, see https://github.com/fiffeek/hyprdynamicmonitors/blob/main/examples/basic/hyprconfigs/template.go.tmpl.
-# Monitors are given arbitrary tags (the "monitor" prefix and the ID coming from hyprland).
-# If you are using tui to edit, leave this at the end of your file (the last monitor config applies)
-# and leave the markers.
+-- Generated with hyprdynamicmonitors freeze.
+-- This is a template that you can edit, it is just a starter that pulled your current monitor setup,
+-- adjust as needed.
+-- You can use templates here etc, see https://github.com/fiffeek/hyprdynamicmonitors/blob/main/examples/basic/hyprconfigs/template.go.tmpl.
+-- Monitors are given arbitrary tags (the "monitor" prefix and the ID coming from hyprland).
+-- If you are using tui to edit, leave this at the end of your file (the last monitor config applies)
+-- and leave the markers.
 
 {{ if eq .mode "home_second_screen" }}
-monitor=desc:Chimei Innolux Corporation 0x1540,disable
-monitor=desc:Samsung Electric Company LC32G7xT H4ZN900002,2560x1440@{{ .rr_samsung }},0x0,{{ .scale_samsung }},transform,0,vrr,0
+hl.monitor({ output = "desc:Chimei Innolux Corporation 0x1540", disabled = true })
+hl.monitor({
+  output = "desc:Samsung Electric Company LC32G7xT H4ZN900002",
+  mode = "2560x1440@{{ .rr_samsung }}",
+  position = "0x0",
+  scale = "{{ .scale_samsung }}",
+  transform = 0,
+  vrr = 0,
+})
 {{ end }}
 
 {{ if eq .mode "home_pc_screen" }}
-monitor=desc:Chimei Innolux Corporation 0x1540,2560x1440@{{ .rr_laptop }},auto-right,{{ .scale_laptop }},transform,0,vrr,0
-monitor=desc:Samsung Electric Company LC32G7xT H4ZN900002,disable
+hl.monitor({
+  output = "desc:Chimei Innolux Corporation 0x1540",
+  mode = "2560x1440@{{ .rr_laptop }}",
+  position = "auto-right",
+  scale = "{{ .scale_laptop }}",
+  transform = 0,
+  vrr = 0,
+})
+hl.monitor({ output = "desc:Samsung Electric Company LC32G7xT H4ZN900002", disabled = true })
 {{ end }}
 
 {{ if eq .mode "home_extend" }}
 # <<<<< TUI AUTO START
-monitor=desc:Chimei Innolux Corporation 0x1540,2560x1440@{{ .rr_laptop }},auto-right,{{ .scale_laptop }},transform,0,vrr,0
-monitor=desc:Samsung Electric Company LC32G7xT H4ZN900002,2560x1440@{{ .rr_samsung }},auto-left,{{ .scale_samsung }},transform,0,vrr,0
+hl.monitor({
+  output = "desc:Chimei Innolux Corporation 0x1540",
+  mode = "2560x1440@{{ .rr_laptop }}",
+  position = "auto-right",
+  scale = "{{ .scale_laptop }}",
+  transform = 0,
+  vrr = 0,
+})
+hl.monitor({
+  output = "desc:Samsung Electric Company LC32G7xT H4ZN900002",
+  mode = "2560x1440@{{ .rr_samsung }}",
+  position = "0x0",
+  scale = "{{ .scale_samsung }}",
+  transform = 0,
+  vrr = 0,
+})
 # <<<<< TUI AUTO END
 
 {{ end }}
