@@ -49,3 +49,5 @@ hl.config({
 --     column_width = 0.97,
 --   },
 -- })
+
+require("hypr.browser-workspace")

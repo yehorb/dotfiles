@@ -9,6 +9,6 @@ ncat -U "$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock" | whi
     addr="${addr%%,*}"          # Longest suffix stripping (%% is longest, % is shortest) - removes everything after the first comma
 
     # Focus the newly opened browser window, then resize its column
-    hyprctl --batch "dispatch focuswindow address:0x${addr}; dispatch layoutmsg colresize 1.0"
+    hyprctl eval 'hl.dsp.focus({ window = "address:0x${addr}" }); hl.dsp.layoutmsg("colresize 1.0")'
   fi
 done
