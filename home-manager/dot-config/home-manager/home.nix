@@ -66,6 +66,9 @@
     pkgs.nixd
     pkgs.nixfmt
 
+    # python
+    pkgs.uv
+
     (
       let
         nixgl = inputs.nixgl.packages.${pkgs.stdenv.hostPlatform.system}.nixGLIntel;
