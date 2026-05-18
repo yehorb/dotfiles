@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+cat=cat
+if command -v bat &>/dev/null; then
+  cat=bat
+fi
+
+exec $cat $(which "$@")
