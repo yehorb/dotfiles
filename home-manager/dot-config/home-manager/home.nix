@@ -68,9 +68,9 @@
 
     (
       let
-        nixgl = inputs.nixgl.packages.${pkgs.stdenv.hostPlatform.system}.nixGLDefault;
+        nixgl = inputs.nixgl.packages.${pkgs.stdenv.hostPlatform.system}.nixGLIntel;
         ghosttyNixgl = pkgs.writeShellScriptBin "ghosttyNixgl" /* bash */ ''
-          exec ${pkgs.lib.getExe' nixgl "nixGL"} ${pkgs.lib.getExe pkgs.ghostty} "$@"
+          exec ${pkgs.lib.getExe' nixgl "nixGLIntel"} ${pkgs.lib.getExe pkgs.ghostty} "$@"
         '';
       in
       pkgs.symlinkJoin {
