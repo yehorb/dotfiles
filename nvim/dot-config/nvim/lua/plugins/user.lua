@@ -7,6 +7,7 @@ end
 
 return {
   { dir = dir("nix"), ft = "nix" },
+  { dir = dir("python"), ft = "python" },
   { dir = dir("rust"), ft = "rust" },
   { dir = dir("typst"), ft = "typst" },
   { dir = dir("ukrainian"), event = "InsertEnter" },
