@@ -48,6 +48,7 @@
     pkgs.fzf
     pkgs.jq
     pkgs.lazygit
+    pkgs.mise
     pkgs.pass
     pkgs.ripgrep
     pkgs.starship
