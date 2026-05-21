@@ -35,3 +35,7 @@ mouse-scroll-multiplier = 0.95
 
 # Open maximized
 maximize = true
+
+# Allow full clipboard access
+clipboard-read = "allow"
+clipboard-write = "allow"
