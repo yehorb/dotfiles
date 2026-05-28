@@ -55,6 +55,7 @@
     pkgs.stow
     pkgs.unzip
     pkgs.zoxide
+    pkgs.shfmt
 
     # tmux
     pkgs.tmux
@@ -69,6 +70,10 @@
 
     # python
     pkgs.uv
+
+    # lua
+    pkgs.lua-language-server
+    pkgs.stylua
 
     (
       let
