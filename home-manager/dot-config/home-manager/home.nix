@@ -56,6 +56,7 @@
     pkgs.unzip
     pkgs.zoxide
     pkgs.shfmt
+    pkgs.xclip
 
     # tmux
     pkgs.tmux
