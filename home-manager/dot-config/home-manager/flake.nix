@@ -12,6 +12,10 @@
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    try = {
+      url = "github:tobi/try";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -29,6 +33,12 @@
         modules = [
           { nix.package = null; }
           ./home.nix
+          {
+            home.packages = [
+              inputs.try.packages.${pkgs.stdenv.hostPlatform.system}.default
+              pkgs.ruby
+            ];
+          }
         ];
 
         # Optionally use extraSpecialArgs
