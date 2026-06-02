@@ -75,32 +75,6 @@
     # lua
     pkgs.lua-language-server
     pkgs.stylua
-
-    (
-      let
-        nixgl = inputs.nixgl.packages.${pkgs.stdenv.hostPlatform.system}.nixGLIntel;
-        ghosttyNixgl = pkgs.writeShellScriptBin "ghosttyNixgl" /* bash */ ''
-          exec ${pkgs.lib.getExe' nixgl "nixGLIntel"} ${pkgs.lib.getExe pkgs.ghostty} "$@"
-        '';
-      in
-      pkgs.symlinkJoin {
-        name = "ghosttyNixgl";
-        meta.mainPrograms = "ghosttyNixgl";
-        paths = [
-          pkgs.ghostty
-          ghosttyNixgl
-        ];
-        postBuild = /* bash */ ''
-          ghostty="$out/share/applications/com.mitchellh.ghostty.desktop"
-          ghosttyNixgl="$out/share/applications/com.mitchellh.ghosttyNixgl.desktop"
-          substitute $ghostty $ghosttyNixgl \
-            --replace-fail ${pkgs.lib.getExe pkgs.ghostty} ${pkgs.lib.getExe ghosttyNixgl} \
-            --replace-fail "Name=Ghostty" "Name=Ghostty (nixGL)" \
-            --replace-fail "DBusActivatable=true" "DBusActivatable=false"
-          rm $ghostty
-        '';
-      }
-    )
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
