@@ -1,4 +1,4 @@
-if command -v fzf &> /dev/null; then
+if command -v fzf &>/dev/null; then
   if [[ -f $HOME/.nix-profile/share/fzf/completion.bash ]]; then
     source $HOME/.nix-profile/share/fzf/completion.bash
   fi
