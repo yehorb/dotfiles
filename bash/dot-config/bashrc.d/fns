@@ -1,0 +1,12 @@
+restow_shell() {
+  for d in bash/ ghostty/ git/ home-manager/ nvim/ starship/ stow/ tmux/; do stow -R $d; done
+}
+
+format_shell_scripts() {
+  # Find all files that either don't have an extension of have .sh/.bash extension; excluding .git dir; and apply shfmt
+  # Regex: no dots after the last / with optional .sh/.bash extension
+  # Requires some manual cleanup (discarding changes) in some LICENSE and config files
+  find $PWD \( -regextype sed -regex ".*/[^\.]\+\(\.sh\|\.bash\)\?$" -o -path "*.git*" -prune \) -type f -exec shfmt -i 2 -w {} +
+}
+
+# vim: filetype=bash
