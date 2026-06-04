@@ -5,13 +5,23 @@
 # (don't mess with these directly, just overwrite them here!)
 source ~/.local/share/omarchy/default/bash/rc
 
-# Source files in users ~/.local/config/bash.d directory if it exists
-# Based on example from $OMARCHY_PATH/default/bash/functions:
-#   for f in $OMARCHY_PATH/default/bash/fns/*; do source "$f"; done
-dir="$HOME/.config/bash.d"
-if [[ -d $dir ]]; then
-  for f in $dir/*; do source "$f"; done
+# User specific environment
+if ! [[ ":$PATH:" =~ ":$HOME/.local/bin:$HOME/bin:" ]]; then
+  PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
+export PATH
+
+# Source files in users ~/.local/config/bash.d directory if it exists
+# Based Fedora .bashrc
+# User specific aliases and functions
+if [ -d "$HOME/.config/bashrc.d" ]; then
+  for rc in "$HOME/.config/bashrc.d"/*; do
+    if [ -f "$rc" ]; then
+      . "$rc"
+    fi
+  done
+fi
+unset rc
 
 # Add your own exports, aliases, and functions here.
 #
