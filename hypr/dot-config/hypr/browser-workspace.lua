@@ -3,9 +3,6 @@ hl.window_rule({
   match = { class = "app.zen_browser.zen" },
   workspace = "1",
 })
-hl.on("hyprland.start", function()
-  hl.exec_cmd("$HOME/.config/hypr/scripts/browser-column-width.sh")
-end)
 hl.config({
   scrolling = {
     explicit_column_widths = "0.5,1.0",
