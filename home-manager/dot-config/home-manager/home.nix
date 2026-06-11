@@ -76,6 +76,7 @@
     pkgs.stylua
 
     # extras
+    pkgs.distrobox
     pkgs.podman
     pkgs.xclip
   ];
