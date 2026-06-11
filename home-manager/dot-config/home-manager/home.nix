@@ -56,7 +56,6 @@
     pkgs.unzip
     pkgs.zoxide
     pkgs.shfmt
-    pkgs.xclip
 
     # tmux
     pkgs.tmux
@@ -75,6 +74,10 @@
     # lua
     pkgs.lua-language-server
     pkgs.stylua
+
+    # extras
+    pkgs.podman
+    pkgs.xclip
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
