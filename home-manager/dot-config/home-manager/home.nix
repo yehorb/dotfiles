@@ -57,6 +57,14 @@
     pkgs.zoxide
     pkgs.shfmt
 
+    # monitoring tools
+    pkgs.btop
+    pkgs.duf
+    pkgs.glances
+    pkgs.ncdu
+    pkgs.nvitop
+    pkgs.nvtopPackages.nvidia
+
     # tmux
     pkgs.tmux
 
