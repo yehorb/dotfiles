@@ -62,8 +62,9 @@
     pkgs.duf
     pkgs.glances
     pkgs.ncdu
-    pkgs.nvitop
-    pkgs.nvtopPackages.nvidia
+    (pkgs.writeShellScriptBin "nvitop" /* bash */ ''
+      exec ${pkgs.uv}/bin/uv tool run nvitop "$@"
+    '')
 
     # tmux
     pkgs.tmux
