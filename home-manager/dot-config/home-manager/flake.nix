@@ -18,7 +18,15 @@
     { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfreePredicate = pkgs._cuda.lib.allowUnfreeCudaPredicate;
+          cudaCapabilities = [ "12.0" ];
+          cudaForwardCompat = true;
+          cudaSupport = true;
+        };
+      };
     in
     {
       homeConfigurations."yborkov" = home-manager.lib.homeManagerConfiguration {
