@@ -1,6 +1,6 @@
 add_newline = true
 command_timeout = 200
-format = "[$custom$directory$git_branch$git_status]($style)$character"
+format = "[$custom$directory$git_branch$git_status]($style)$jobs$character"
 
 [character]
 error_symbol = "[✗](bold cyan)"
@@ -30,6 +30,9 @@ stashed    = ""
 staged     = ""
 renamed    = ""
 deleted    = ""
+
+[jobs]
+symbol = ""
 
 [custom.hostname]
 command = "hostname"
