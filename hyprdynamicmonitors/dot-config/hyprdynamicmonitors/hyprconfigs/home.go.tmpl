@@ -31,6 +31,7 @@ hl.monitor({ output = "desc:Samsung Electric Company LC32G7xT H4ZN900002", disab
 {{ end }}
 
 {{ if eq .mode "home_extend" }}
+-- <<<<< TUI AUTO START
 hl.monitor({
   output = "desc:Chimei Innolux Corporation 0x1540",
   mode = "2560x1440@{{ .rr_laptop }}",
@@ -47,4 +48,6 @@ hl.monitor({
   transform = 0,
   vrr = 0,
 })
+-- <<<<< TUI AUTO END
+
 {{ end }}
