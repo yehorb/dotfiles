@@ -1,0 +1,4 @@
+[sunshine]
+title=sunshine
+description=Self-hosted game stream host for Moonlight
+ports=47984,47989,47990,48010/tcp|47998:48000/udp
