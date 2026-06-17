@@ -1,0 +1,4 @@
+[xrdp]
+title=xrdp
+description=An open source RDP server
+ports=3389/tcp
