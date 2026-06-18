@@ -85,7 +85,9 @@
     pkgs.stylua
 
     # extras
+    pkgs.chafa
     pkgs.distrobox
+    pkgs.libsixel
     pkgs.podman
     pkgs.xclip
   ];
