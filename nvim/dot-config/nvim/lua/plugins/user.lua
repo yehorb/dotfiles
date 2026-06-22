@@ -6,6 +6,7 @@ local dir = function(name)
 end
 
 return {
+  { dir = dir("matlab"), ft = "matlab" },
   { dir = dir("nix"), ft = "nix" },
   { dir = dir("python"), ft = "python" },
   { dir = dir("rust"), ft = "rust" },
