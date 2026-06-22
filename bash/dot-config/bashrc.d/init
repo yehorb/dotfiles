@@ -4,10 +4,10 @@ fi
 
 if command -v pnpm &> /dev/null; then
   export PNPM_HOME="$HOME/.local/share/pnpm"
-  if ! [[ ":$PATH:" =~ ":$PNPM_HOME/bin:" ]]; then
-    PATH="$PNPM_HOME/bin:$PATH"
-  fi
-  export PATH
+  case ":$PATH:" in
+    *":$PNPM_HOME/bin:"*) ;;
+    *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+  esac
 fi
 
 # vim: filetype=bash
