@@ -90,6 +90,11 @@
     pkgs.libsixel
     pkgs.podman
     pkgs.xclip
+
+    # fonts
+    pkgs.nerd-fonts.iosevka
+    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.nerd-fonts.lilex
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
