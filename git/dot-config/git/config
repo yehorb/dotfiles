@@ -35,5 +35,6 @@
 [core]
 	autocrlf = false
 	eol = lf
+	quotePath = false
 
 # vim: ft=gitconfig
