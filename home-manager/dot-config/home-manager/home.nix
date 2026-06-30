@@ -73,6 +73,9 @@
     pkgs.neovim-unwrapped
     pkgs.tree-sitter
 
+    # notes
+    pkgs.zk
+
     # nix
     pkgs.nixd
     pkgs.nixfmt
