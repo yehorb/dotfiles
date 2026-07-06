@@ -1,0 +1,8 @@
+#!/bin/bash
+
+message=$1
+
+case "$message" in
+"nix" | "flake") git commit --message "chore(hm): update flake.lock" ;;
+"nvim" | "lazy") git commit --message "chore(nvim): update lazy-lock.json" ;;
+esac
