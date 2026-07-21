@@ -1,6 +1,9 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
 add_newline = true
 command_timeout = 200
-format = "[$custom$directory$git_branch$git_status]($style)$jobs$character"
+format = "[$conda]($style)[$custom$directory$git_branch$git_status]($style)$jobs$character"
 
 [character]
 error_symbol = "[✗](bold cyan)"
@@ -37,3 +40,6 @@ symbol = ""
 [custom.hostname]
 command = "hostname"
 when    = "((SHLVL > 2))"
+
+[conda]
+format = "[$symbol$environment]($style)\n"
