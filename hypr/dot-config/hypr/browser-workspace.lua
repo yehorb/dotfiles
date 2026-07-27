@@ -4,7 +4,10 @@ hl.config({
     follow_min_visible = 0.0,
   },
 })
-hl.workspace_rule({ workspace = "1", layout = "scrolling" })
+hl.workspace_rule({ workspace = "1", layout = "scrolling", persistent = true })
+for workspace = 2, 5 do
+  hl.workspace_rule({ workspace = tostring(workspace), persistent = true })
+end
 
 hl.window_rule({
   match = { class = "app.zen_browser.zen" },
