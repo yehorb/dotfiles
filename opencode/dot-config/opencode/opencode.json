@@ -4,13 +4,15 @@
   "permission": {
     "external_directory": {
       "$HOME/.config/**": "allow",
-      "$HOME/.local/share/omarchy/**": "allow",
+      "$HOME/.local/share/**": "allow",
+      "$HOME/.local/state/**": "allow",
       "/etc/**": "allow",
       "/usr/share/**": "allow"
     },
     "edit": {
       "$HOME/.config/**": "deny",
-      "$HOME/.local/share/omarchy/**": "deny",
+      "$HOME/.local/share/**": "deny",
+      "$HOME/.local/state/**": "deny",
       "/etc/**": "deny",
       "/usr/share/**": "deny"
     }
