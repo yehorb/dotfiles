@@ -36,5 +36,9 @@
 	autocrlf = false
 	eol = lf
 	quotePath = false
+[merge]
+	tool = nvimdiff
+[mergetool "nvimdiff"]
+	layout = LOCAL,MERGED,REMOTE + (LOCAL/BASE/REMOTE),MERGED
 
 # vim: ft=gitconfig
