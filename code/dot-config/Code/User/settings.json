@@ -1,0 +1,60 @@
+{
+    // nvim-like behavior
+    "vim.useSystemClipboard": true,
+    // nvim-like Insert mode completion
+    "editor.quickSuggestions": {
+        "other": "on",
+        "comments": "on",
+        "strings": "on"
+    },
+    "editor.wordBasedSuggestions": "currentDocument",
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                "editor.action.triggerSuggest"
+            ]
+        },
+        {
+            "before": [
+                "<C-x>",
+                "<C-o>"
+            ],
+            "commands": [
+                "editor.action.triggerSuggest"
+            ]
+        },
+        {
+            "before": [
+                "<C-y>"
+            ],
+            "commands": [
+                "acceptSelectedSuggestion"
+            ]
+        },
+        {
+            "before": [
+                "<C-e>"
+            ],
+            "commands": [
+                "hideSuggestWidget"
+            ]
+        }
+    ],
+
+    "editor.fontFamily": "'JetBrainsMono Nerd Font', 'Lilex Nerd Font', 'Droid Sans Mono', monospace",
+    "editor.fontSize": 12,
+    "explorer.confirmDelete": false,
+    "json.format.keepLines": true,
+    "jupyter.interactiveWindow.creationMode": "perFile",
+    "python-envs.terminal.autoActivationType": "shellStartup",
+    "task.allowAutomaticTasks": "off",
+    "terminal.integrated.inheritEnv": false,
+    "update.mode": "none",
+    "workbench.colorTheme": "Kanagawa",
+    "workbench.enableExperiments": false,
+    "workbench.experimental.modernUI": false,
+    "workbench.settings.alwaysShowAdvancedSettings": true,
+}
