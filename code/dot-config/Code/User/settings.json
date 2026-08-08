@@ -71,4 +71,7 @@
     "workbench.enableExperiments": false,
     "workbench.experimental.modernUI": false,
     "workbench.settings.alwaysShowAdvancedSettings": true,
+    "python-envs.pythonProjects": [],
+    "python.useEnvironmentsExtension": true,
+    "jupyter.askForKernelRestart": false,
 }
