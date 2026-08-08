@@ -1,6 +1,7 @@
 {
     // nvim-like behavior
     "vim.useSystemClipboard": true,
+    "vim.visualstar": true,
     // nvim-like Insert mode completion
     "editor.quickSuggestions": {
         "other": "on",
@@ -8,6 +9,9 @@
         "strings": "on"
     },
     "editor.wordBasedSuggestions": "currentDocument",
+    "[python]": {
+        "editor.wordBasedSuggestions": "currentDocument"
+    },
     "vim.insertModeKeyBindings": [
         {
             "before": [
@@ -34,6 +38,16 @@
                 "acceptSelectedSuggestion"
             ]
         },
+        {
+            "before": [
+                "<C-e>"
+            ],
+            "commands": [
+                "hideSuggestWidget"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindings": [
         {
             "before": [
                 "<C-e>"
