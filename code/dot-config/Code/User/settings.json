@@ -74,4 +74,6 @@
     "python-envs.pythonProjects": [],
     "python.useEnvironmentsExtension": true,
     "jupyter.askForKernelRestart": false,
+    "tinymist.serverPath": "tinymist",
+    "explorer.confirmDragAndDrop": false,
 }
