@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# git [g]roup [a]uthor [by] date - it does make sens when I write this, trust
+
+git log --all \
+  --author="$(git config user.email)" \
+  --format='%aI%x09%h%x09%s' |
+  sort |
+  awk -F '\t' '{
+  authored_at = $1
+  commit_hash = $2
+  commit_subject = $3
+
+  authored_date = substr(authored_at, 1, 10)
+  authored_time = substr(authored_at, 12, 8)
+
+  if (authored_date != previous_date) {
+    if (previous_date != "") {
+      print ""
+    }
+
+    print authored_date
+    previous_date = authored_date
+  }
+
+  printf "  %s  %s  %s\n", authored_time, commit_hash, commit_subject
+}'
