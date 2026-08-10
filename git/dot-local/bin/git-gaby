@@ -2,10 +2,44 @@
 
 # git [g]roup [a]uthor [by] date - it does make sens when I write this, trust
 
+author=$(git config user.email)
+sort_options=()
+
+usage() {
+  echo "Usage: git gaby [--author AUTHOR] [--reverse]"
+}
+
+while (($# > 0)); do
+  case "$1" in
+    --author)
+      if (($# < 2)); then
+        echo "git gaby: --author requires a value" >&2
+        usage >&2
+        exit 2
+      fi
+      author=$2
+      shift 2
+      ;;
+    --reverse)
+      sort_options=(-r)
+      shift
+      ;;
+    -h | --help)
+      usage
+      exit
+      ;;
+    *)
+      echo "git gaby: unknown argument: $1" >&2
+      usage >&2
+      exit 2
+      ;;
+  esac
+done
+
 git log --all \
-  --author="$(git config user.email)" \
+  --author="$author" \
   --format='%aI%x09%h%x09%s' |
-  sort |
+  sort "${sort_options[@]}" |
   awk -F '\t' '{
   authored_at = $1
   commit_hash = $2
