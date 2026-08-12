@@ -5,6 +5,9 @@ vim.lsp.config("pyrefly", {
       typeCheckingMode = "auto",
       analysis = {
         showHoverGoToLinks = false,
+        inlayHints = {
+          variableTypes = false,
+        },
       },
     },
   },
