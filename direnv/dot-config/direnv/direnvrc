@@ -1,0 +1,17 @@
+# shellcheck shell=bash
+# vim: filetype=bash
+
+layout_mamba() {
+  if [ -n "$1" ]; then
+    eval "$(command "${MAMBA_EXE}" shell hook --shell 'bash' 2> /dev/null)"
+
+    if [ -n "$1" ]; then
+      # Explicit environment name from layout command.
+      local env_name="$1"
+      mamba activate "${env_name}"
+    else
+      (>&2 echo No environment specified);
+      exit 1;
+    fi;
+  fi;
+}
