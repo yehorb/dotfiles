@@ -14,6 +14,7 @@ vim.lsp.config("matlab_ls", {
   settings = {
     MATLAB = {
       installPath = "/usr/local/MATLAB/R2025b",
+      telemetry = false,
     },
   },
 })
