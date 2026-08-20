@@ -2,12 +2,12 @@ if command -v direnv &>/dev/null; then
   eval "$(direnv hook bash)"
 fi
 
-if command -v pnpm &> /dev/null; then
+if command -v pnpm &>/dev/null; then
   export PNPM_HOME="$HOME/.local/share/pnpm"
-  case ":$PATH:" in
-    *":$PNPM_HOME/bin:"*) ;;
-    *) export PATH="$PNPM_HOME/bin:$PATH" ;;
-  esac
+  if ! [[ ":$PATH:" =~ ":$PNPM_HOME/bin:" ]]; then
+    PATH="$PNPM_HOME/bin:$PATH"
+  fi
+  export PATH
 fi
 
 # vim: filetype=bash
