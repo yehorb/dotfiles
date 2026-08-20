@@ -73,6 +73,7 @@
             ]
         },
     ],
+    "vim.textwidth": 100,
 
     "editor.fontFamily": "'JetBrainsMono Nerd Font', 'Lilex Nerd Font', 'Droid Sans Mono', monospace",
     "editor.fontSize": 12,
@@ -90,6 +91,9 @@
     "python-envs.pythonProjects": [ ],
     "python.useEnvironmentsExtension": true,
     "jupyter.askForKernelRestart": false,
+    "jupyter.experiments.enabled": false,
+    "jupyter.interactiveWindow.codeLens.commands": "jupyter.runcell, jupyter.runcurrentcellandallbelow.palette, jupyter.debugcell",
     "tinymist.serverPath": "tinymist",
     "explorer.confirmDragAndDrop": false,
+    "workbench.editor.useModal": "off",
 }
