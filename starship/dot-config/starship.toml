@@ -3,7 +3,7 @@
 
 add_newline = true
 command_timeout = 200
-format = "[$conda]($style)[$custom$directory$git_branch$git_status]($style)$jobs$character"
+format = "($conda\n)[$directory$git_branch$git_status]($style)$jobs$character"
 
 [character]
 error_symbol = "[✗](bold cyan)"
@@ -35,11 +35,5 @@ renamed    = ""
 deleted    = ""
 
 [jobs]
+format = "[$symbol( $number)]($style) "
 symbol = ""
-
-[custom.hostname]
-command = "hostname"
-when    = "((SHLVL > 2))"
-
-[conda]
-format = "[$symbol$environment]($style)\n"
