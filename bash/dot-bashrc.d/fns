@@ -1,5 +1,5 @@
 restow_shell() {
-  for d in bash/ ghostty/ git/ home-manager/ nvim/ starship/ stow/ tmux/; do
+  for d in bash/ git/ home-manager/ nvim/ starship/ stow/ tmux/; do
     if [[ -d $d ]]; then
       echo "Restow $d"
       stow -D $d && stow -S $d
