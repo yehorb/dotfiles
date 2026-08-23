@@ -51,11 +51,12 @@
     pkgs.mise
     pkgs.pass
     pkgs.ripgrep
+    pkgs.shellcheck
+    pkgs.shfmt
     pkgs.starship
     pkgs.stow
     pkgs.unzip
     pkgs.zoxide
-    pkgs.shfmt
 
     # monitoring tools
     pkgs.btop
