@@ -1,5 +1,13 @@
 # Omarchy environment (OMARCHY_PATH + PATH), needed even for non-interactive shells
-[[ -r /usr/share/omarchy/default/bash/env-bootstrap ]] && source /usr/share/omarchy/default/bash/env-bootstrap
+if [[ -r /usr/share/omarchy/default/bash/env-bootstrap ]]; then
+  source /usr/share/omarchy/default/bash/env-bootstrap
+else
+  export OMARCHY_PATH="$HOME/.local/share/omarchy"
+  case ":$PATH:" in
+    *":${OMARCHY_PATH%/}/bin:"*) ;;
+    *) export PATH="${OMARCHY_PATH%/}/bin${PATH:+:$PATH}" ;;
+  esac
+fi
 
 # If not running interactively, don't do anything else (leave this above the rc source)
 [[ $- != *i* ]] && return
