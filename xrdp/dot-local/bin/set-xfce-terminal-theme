@@ -1,0 +1,61 @@
+#!/bin/sh
+
+theme="$HOME/.local/state/omarchy/current/theme/kitty.conf"
+
+# Kanagawa defaults are retained when the theme file or an entry is missing.
+foreground='#dcd7ba'
+background='#1f1f28'
+cursor='#dcd7ba'
+selection='#363646'
+color0='#1f1f28'
+color1='#c34043'
+color2='#76946a'
+color3='#c0a36e'
+color4='#7e9cd8'
+color5='#957fb8'
+color6='#6a9589'
+color7='#dcd7ba'
+color8='#54546d'
+color9='#e82424'
+color10='#98bb6c'
+color11='#e6c384'
+color12='#7fb4ca'
+color13='#938aa9'
+color14='#7aa89f'
+color15='#dcd7ba'
+
+if [ -r "$theme" ]; then
+  while read -r name value _; do
+    case "$name" in
+      foreground) foreground=$value ;;
+      background) background=$value ;;
+      cursor) cursor=$value ;;
+      selection_background) selection=$value ;;
+      color0) color0=$value ;;
+      color1) color1=$value ;;
+      color2) color2=$value ;;
+      color3) color3=$value ;;
+      color4) color4=$value ;;
+      color5) color5=$value ;;
+      color6) color6=$value ;;
+      color7) color7=$value ;;
+      color8) color8=$value ;;
+      color9) color9=$value ;;
+      color10) color10=$value ;;
+      color11) color11=$value ;;
+      color12) color12=$value ;;
+      color13) color13=$value ;;
+      color14) color14=$value ;;
+      color15) color15=$value ;;
+    esac
+  done < "$theme"
+fi
+
+palette="$color0;$color1;$color2;$color3;$color4;$color5;$color6;$color7;$color8;$color9;$color10;$color11;$color12;$color13;$color14;$color15"
+xfconf-query --channel xfce4-terminal --property /color-foreground --create --type string --set "$foreground"
+xfconf-query --channel xfce4-terminal --property /color-background --create --type string --set "$background"
+xfconf-query --channel xfce4-terminal --property /color-cursor --create --type string --set "$cursor"
+xfconf-query --channel xfce4-terminal --property /color-cursor-use-default --create --type bool --set false
+xfconf-query --channel xfce4-terminal --property /color-selection --create --type string --set "$selection"
+xfconf-query --channel xfce4-terminal --property /color-selection-use-default --create --type bool --set false
+xfconf-query --channel xfce4-terminal --property /color-palette --create --type string --set "$palette"
