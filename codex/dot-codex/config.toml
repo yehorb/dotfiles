@@ -1,0 +1,20 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+
+check_for_update_on_startup = false
+
+approval_policy = "on-request"
+default_permissions = "dotfiles"
+
+[permissions.dotfiles]
+description = "Edit the workspace while keeping installed configuration readable."
+extends = ":workspace"
+
+[permissions.dotfiles.filesystem]
+"~/.config" = "read"
+"~/.local/share" = "read"
+"~/.local/state" = "read"
+"/etc" = "read"
+"/usr/share" = "read"
+
+[permissions.dotfiles.network]
+enabled = true
