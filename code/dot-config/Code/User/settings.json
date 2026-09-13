@@ -1,99 +1,75 @@
 {
-    // nvim-like behavior
-    "vim.useSystemClipboard": true,
-    "vim.visualstar": true,
-    // nvim-like Insert mode completion
-    "editor.quickSuggestions": {
-        "other": "on",
-        "comments": "on",
-        "strings": "on"
-    },
+  // nvim-like behavior
+  "vim.useSystemClipboard": true,
+  "vim.visualstar": true,
+  // nvim-like Insert mode completion
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "on",
+    "strings": "on",
+  },
+  "editor.wordBasedSuggestions": "currentDocument",
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
     "editor.wordBasedSuggestions": "currentDocument",
-    "[python]": {
-        "editor.wordBasedSuggestions": "currentDocument"
+  },
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["<C-n>"],
+      "commands": ["editor.action.triggerSuggest"],
     },
-    "vim.insertModeKeyBindings": [
-        {
-            "before": [
-                "<C-n>"
-            ],
-            "commands": [
-                "editor.action.triggerSuggest"
-            ]
-        },
-        {
-            "before": [
-                "<C-x>",
-                "<C-o>"
-            ],
-            "commands": [
-                "editor.action.triggerSuggest"
-            ]
-        },
-        {
-            "before": [
-                "<C-y>"
-            ],
-            "commands": [
-                "acceptSelectedSuggestion"
-            ]
-        },
-        {
-            "before": [
-                "<C-e>"
-            ],
-            "commands": [
-                "hideSuggestWidget"
-            ]
-        }
-    ],
-    "vim.normalModeKeyBindings": [
-        {
-            "before": [
-                "<C-e>"
-            ],
-            "commands": [
-                "hideSuggestWidget"
-            ]
-        },
-        {
-            "before": [
-                "<C-p>"
-            ],
-            "commands": [
-                "workbench.action.quickOpen"
-            ]
-        },
-        {
-            "before": [
-                "K"
-            ],
-            "commands": [
-                "editor.action.showHover"
-            ]
-        },
-    ],
-    "vim.textwidth": 100,
+    {
+      "before": ["<C-x>", "<C-o>"],
+      "commands": ["editor.action.triggerSuggest"],
+    },
+    {
+      "before": ["<C-y>"],
+      "commands": ["acceptSelectedSuggestion"],
+    },
+    {
+      "before": ["<C-e>"],
+      "commands": ["hideSuggestWidget"],
+    },
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<C-e>"],
+      "commands": ["hideSuggestWidget"],
+    },
+    {
+      "before": ["<C-p>"],
+      "commands": ["workbench.action.quickOpen"],
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"],
+    },
+  ],
+  "vim.textwidth": 100,
 
-    "editor.fontFamily": "'JetBrainsMono Nerd Font', 'Lilex Nerd Font', 'Droid Sans Mono', monospace",
-    "editor.fontSize": 12,
-    "explorer.confirmDelete": false,
-    "json.format.keepLines": true,
-    "jupyter.interactiveWindow.creationMode": "perFile",
-    "python-envs.terminal.autoActivationType": "shellStartup",
-    "task.allowAutomaticTasks": "off",
-    "terminal.integrated.inheritEnv": false,
-    "update.mode": "none",
-    "workbench.colorTheme": "Kanagawa",
-    "workbench.enableExperiments": false,
-    "workbench.experimental.modernUI": false,
-    "workbench.settings.alwaysShowAdvancedSettings": true,
-    "python-envs.pythonProjects": [ ],
-    "python.useEnvironmentsExtension": true,
-    "jupyter.askForKernelRestart": false,
-    "jupyter.experiments.enabled": false,
-    "jupyter.interactiveWindow.codeLens.commands": "jupyter.runcell, jupyter.runcurrentcellandallbelow.palette, jupyter.debugcell",
-    "tinymist.serverPath": "tinymist",
-    "explorer.confirmDragAndDrop": false,
-    "workbench.editor.useModal": "off",
+  "editor.fontFamily": "'JetBrainsMono Nerd Font', 'Lilex Nerd Font', 'Droid Sans Mono', monospace",
+  "editor.fontSize": 12,
+  "explorer.confirmDelete": false,
+  "json.format.keepLines": true,
+  "jupyter.interactiveWindow.creationMode": "perFile",
+  "python-envs.terminal.autoActivationType": "shellStartup",
+  "task.allowAutomaticTasks": "off",
+  "terminal.integrated.inheritEnv": false,
+  "update.mode": "none",
+  "workbench.colorTheme": "Kanagawa",
+  "workbench.enableExperiments": false,
+  "workbench.experimental.modernUI": false,
+  "workbench.settings.alwaysShowAdvancedSettings": true,
+  "python-envs.pythonProjects": [],
+  "python.useEnvironmentsExtension": true,
+  "jupyter.askForKernelRestart": false,
+  "jupyter.experiments.enabled": false,
+  "jupyter.interactiveWindow.codeLens.commands": "jupyter.runcell, jupyter.runcurrentcellandallbelow.palette, jupyter.debugcell",
+  "tinymist.serverPath": "tinymist",
+  "explorer.confirmDragAndDrop": false,
+  "workbench.editor.useModal": "off",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
 }
