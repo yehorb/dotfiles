@@ -2,6 +2,51 @@
   "$schema": "https://opencode.ai/config.json",
   "theme": "system",
   "autoupdate": false,
+  "model": "openai/gpt-6-astra",
+  "small_model": "openai/gpt-6-luna",
+  "agent": {
+    "build": {
+      "model": "openai/gpt-6-astra",
+      "variant": "low"
+    },
+    "plan": {
+      "model": "openai/gpt-6-astra",
+      "variant": "low"
+    },
+    "general": {
+      "model": "openai/gpt-6-sol",
+      "variant": "medium"
+    },
+    "explore": {
+      "model": "openai/gpt-6-luna",
+      "variant": "high"
+    },
+    "scout": {
+      "model": "openai/gpt-6-luna",
+      "variant": "high"
+    }
+  },
+  "provider": {
+    "openai": {
+      "models": {
+        "gpt-6-luna": {
+          "options": {
+            "reasoningEffort": "high"
+          }
+        },
+        "gpt-6-sol": {
+          "options": {
+            "reasoningEffort": "medium"
+          }
+        },
+        "gpt-6-astra": {
+          "options": {
+            "reasoningEffort": "low"
+          }
+        }
+      }
+    }
+  },
   "permission": {
     "external_directory": {
       "$HOME/.config/**": "allow",
