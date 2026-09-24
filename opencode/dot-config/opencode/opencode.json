@@ -1,66 +1,58 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "system",
-  "autoupdate": false,
+  "update": "disable",
   "model": "openai/gpt-6-sol",
-  "small_model": "openai/gpt-6-luna",
-  "agent": {
+  "agents": {
     "build": {
-      "model": "openai/gpt-6-sol",
-      "variant": "medium"
+      "model": "openai/gpt-6-sol#medium"
     },
     "plan": {
-      "model": "openai/gpt-6-sol",
-      "variant": "medium"
+      "model": "openai/gpt-6-sol#medium"
     },
     "general": {
-      "model": "openai/gpt-6-sol",
-      "variant": "medium"
+      "model": "openai/gpt-6-sol#medium"
     },
     "explore": {
-      "model": "openai/gpt-6-luna",
-      "variant": "high"
+      "model": "openai/gpt-6-luna#high"
     },
     "scout": {
-      "model": "openai/gpt-6-luna",
-      "variant": "high"
+      "model": "openai/gpt-6-luna#high"
+    },
+    "title": {
+      "model": "openai/gpt-6-luna"
     }
   },
-  "provider": {
+  "providers": {
     "openai": {
       "models": {
         "gpt-6-luna": {
-          "options": {
+          "settings": {
             "reasoningEffort": "high"
           }
         },
         "gpt-6-sol": {
-          "options": {
+          "settings": {
             "reasoningEffort": "medium"
           }
         },
         "gpt-6-astra": {
-          "options": {
+          "settings": {
             "reasoningEffort": "low"
           }
         }
       }
     }
   },
-  "permission": {
-    "external_directory": {
-      "$HOME/.config/**": "allow",
-      "$HOME/.local/share/**": "allow",
-      "$HOME/.local/state/**": "allow",
-      "/etc/**": "allow",
-      "/usr/share/**": "allow"
-    },
-    "edit": {
-      "$HOME/.config/**": "deny",
-      "$HOME/.local/share/**": "deny",
-      "$HOME/.local/state/**": "deny",
-      "/etc/**": "deny",
-      "/usr/share/**": "deny"
-    }
-  }
+  "permissions": [
+    { "action": "external_directory", "resource": "$HOME/.config/**", "effect": "allow" },
+    { "action": "external_directory", "resource": "$HOME/.local/share/**", "effect": "allow" },
+    { "action": "external_directory", "resource": "$HOME/.local/state/**", "effect": "allow" },
+    { "action": "external_directory", "resource": "/etc/**", "effect": "allow" },
+    { "action": "external_directory", "resource": "/usr/share/**", "effect": "allow" },
+    { "action": "edit", "resource": "$HOME/.config/**", "effect": "deny" },
+    { "action": "edit", "resource": "$HOME/.local/share/**", "effect": "deny" },
+    { "action": "edit", "resource": "$HOME/.local/state/**", "effect": "deny" },
+    { "action": "edit", "resource": "/etc/**", "effect": "deny" },
+    { "action": "edit", "resource": "/usr/share/**", "effect": "deny" }
+  ]
 }
