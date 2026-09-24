@@ -14,12 +14,6 @@
     },
     "explore": {
       "model": "openai/gpt-6-luna#high"
-    },
-    "scout": {
-      "model": "openai/gpt-6-luna#high"
-    },
-    "title": {
-      "model": "openai/gpt-6-luna"
     }
   },
   "providers": {
