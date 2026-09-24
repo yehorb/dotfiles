@@ -16,27 +16,6 @@
       "model": "openai/gpt-6-luna#high"
     }
   },
-  "providers": {
-    "openai": {
-      "models": {
-        "gpt-6-luna": {
-          "settings": {
-            "reasoningEffort": "high"
-          }
-        },
-        "gpt-6-sol": {
-          "settings": {
-            "reasoningEffort": "medium"
-          }
-        },
-        "gpt-6-astra": {
-          "settings": {
-            "reasoningEffort": "low"
-          }
-        }
-      }
-    }
-  },
   "permissions": [
     { "action": "external_directory", "resource": "$HOME/.config/**", "effect": "allow" },
     { "action": "external_directory", "resource": "$HOME/.local/share/**", "effect": "allow" },
