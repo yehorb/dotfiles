@@ -15,6 +15,7 @@
   },
   "permissions": {
     "allow": [
+      "Read(~/.agents/skills/**)",
       "Read(~/.config/**)",
       "Read(~/.local/share/**)",
       "Read(~/.local/state/**)",
