@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "model": "opus",
   "env": {
     "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
@@ -12,6 +13,24 @@
       "effortLevel": "xhigh"
     }
   },
+  "permissions": {
+    "allow": [
+      "Read(~/.config/**)",
+      "Read(~/.local/share/**)",
+      "Read(~/.local/state/**)",
+      "Read(//etc/**)",
+      "Read(//usr/share/**)"
+    ],
+    "deny": [
+      "Edit(~/.config/**)",
+      "Edit(~/.local/share/**)",
+      "Edit(~/.local/state/**)",
+      "Edit(//etc/**)",
+      "Edit(//usr/share/**)"
+    ]
+  },
+  "attribution": { "commit": "", "pr": "" },
   "autoMemoryEnabled": false,
+  "showThinkingSummaries": true,
   "theme": "auto"
 }
