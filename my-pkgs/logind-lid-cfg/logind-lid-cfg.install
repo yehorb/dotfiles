@@ -1,0 +1,17 @@
+# logind rereads its drop-ins on SIGHUP. Skip when systemd isn't running,
+# e.g. when installing into a chroot.
+reload_logind() {
+    systemctl is-active --quiet systemd-logind && systemctl kill -s HUP systemd-logind
+}
+
+post_install() {
+    reload_logind
+}
+
+post_upgrade() {
+    reload_logind
+}
+
+post_remove() {
+    reload_logind
+}

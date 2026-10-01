@@ -1,0 +1,24 @@
+# Maintainer: Yehor Borkov <yehor.borkov@gmail.com>
+
+pkgname=logind-lid-cfg
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="logind configuration to keep the laptop running when the lid is closed"
+arch=('any')
+license=('MIT')
+depends=('systemd')
+install="$pkgname.install"
+
+source=(
+    "10-ignore-lid.conf"
+)
+
+sha256sums=(
+    'dd0f7a835e5e153d4cb6cd74e59053b7ce11d8a5642692ca1d31b8535ec9b29a' # 10-ignore-lid.conf
+)
+
+package() {
+    mkdir -p "$pkgdir/usr/lib/systemd/logind.conf.d/"
+
+    install -m 644 "$srcdir/10-ignore-lid.conf" "$pkgdir/usr/lib/systemd/logind.conf.d/10-ignore-lid.conf"
+}
