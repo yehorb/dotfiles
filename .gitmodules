@@ -1,0 +1,3 @@
+[submodule "my-pkgs/nvidia-laptop-power-cfg"]
+	path = my-pkgs/nvidia-laptop-power-cfg
+	url = https://gitlab.com/asus-linux/nvidia-laptop-power-cfg.git
