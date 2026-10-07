@@ -1,17 +1,12 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "model": "opus",
   "env": {
     "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
     "DISABLE_AUTOUPDATER": "1"
   },
-  "modelSettings": {
-    "claude-opus-5-5": {
-      "effortLevel": "medium"
-    },
-    "claude-sonnet-5-5": {
-      "effortLevel": "medium"
-    }
+  "attribution": {
+    "commit": "",
+    "pr": ""
   },
   "permissions": {
     "allow": [
@@ -30,7 +25,15 @@
       "Edit(//usr/share/**)"
     ]
   },
-  "attribution": { "commit": "", "pr": "" },
+  "model": "opus",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    },
+    "claude-sonnet-5-5": {
+      "effortLevel": "medium"
+    }
+  },
   "autoMemoryEnabled": false,
   "showThinkingSummaries": true,
   "theme": "auto"
