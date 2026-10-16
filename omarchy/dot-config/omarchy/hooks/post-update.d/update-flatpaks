@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Update Flatpak apps and runtimes after an Omarchy system update.
+
+command -v flatpak >/dev/null || exit 0
+
+flatpak update -y --noninteractive
+flatpak uninstall -y --noninteractive --unused
