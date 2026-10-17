@@ -1,0 +1,5 @@
+# Give the active seat user access to GameSir controllers (VID 3537), so
+# SDL's HIDAPI driver and userspace tools can talk to them without root.
+# Must sort before 73-seat-late.rules, which applies the uaccess tag.
+KERNEL=="hidraw*", ATTRS{idVendor}=="3537", TAG+="uaccess"
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="3537", TAG+="uaccess"

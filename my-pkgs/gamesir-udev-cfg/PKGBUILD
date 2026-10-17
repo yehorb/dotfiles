@@ -1,0 +1,24 @@
+# Maintainer: Yehor Borkov <yehor.borkov@gmail.com>
+
+pkgname=gamesir-udev-cfg
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="udev rules granting the seat user access to GameSir controllers"
+arch=('any')
+license=('MIT')
+depends=('systemd')
+install="$pkgname.install"
+
+source=(
+    "70-gamesir.rules"
+)
+
+sha256sums=(
+    '8de4656c8dd3d71dfcf994686e5b3a5f1c564e549e844a48f2cf438e49cee15a' # 70-gamesir.rules
+)
+
+package() {
+    mkdir -p "$pkgdir/usr/lib/udev/rules.d/"
+
+    install -m 644 "$srcdir/70-gamesir.rules" "$pkgdir/usr/lib/udev/rules.d/70-gamesir.rules"
+}

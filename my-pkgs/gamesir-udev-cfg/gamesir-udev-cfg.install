@@ -1,0 +1,19 @@
+# Apply the rules to already-connected controllers. Skip when udev isn't
+# running, e.g. when installing into a chroot.
+reload_udev() {
+    systemctl is-active --quiet systemd-udevd || return 0
+    udevadm control --reload
+    udevadm trigger --subsystem-match=usb --subsystem-match=hidraw
+}
+
+post_install() {
+    reload_udev
+}
+
+post_upgrade() {
+    reload_udev
+}
+
+post_remove() {
+    reload_udev
+}
