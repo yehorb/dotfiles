@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Commit the pristine omarchy-nvim config to the omarchy-nvim branch of
+# ~/.dotfiles after an Omarchy system update. Merge that branch into master to
+# pick up upstream changes.
+
+vendor=$HOME/.cache/omarchy-nvim-vendor
+
+[[ -d $vendor ]] || exit 0
+cd "$vendor" || exit 1
+
+mkdir -p nvim/dot-config
+rsync -a --delete /usr/share/omarchy-nvim/config/ nvim/dot-config/nvim/
+git add -A
+
+if ! git diff --cached --quiet; then
+  git commit -q -m "chore(nvim): $(pacman -Q omarchy-nvim) snapshot"
+  echo "New omarchy-nvim snapshot, merge it with: git -C ~/.dotfiles merge omarchy-nvim"
+fi
