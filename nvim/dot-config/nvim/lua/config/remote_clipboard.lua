@@ -106,18 +106,10 @@ function M.setup()
       local cmd
       -- tmux's buffer is shared between Neovim instances on the server. Over
       -- SSH, prefer it to the remote machine's unrelated graphical clipboard.
-      if
-        has_tmux
-        and register == "+"
-        and (in_ssh or not has_wayland)
-        and vim.g.omarchy_remote_clipboard_osc52 ~= false
-      then
-        local buffers = vim.fn.systemlist({
-          "tmux",
-          "display-message",
-          "-p",
-          "#{buffer_name}\n#{@omarchy-nvim-cleared-buffer}",
-        })
+      if has_tmux and register == "+" and (in_ssh or not has_wayland)
+        and vim.g.omarchy_remote_clipboard_osc52 ~= false then
+        local buffers = vim.fn.systemlist({ "tmux", "display-message", "-p",
+          "#{buffer_name}\n#{@omarchy-nvim-cleared-buffer}" })
         if vim.v.shell_error ~= 0 then
           return vim.deepcopy(last_copy[register] or { {}, "v" })
         end
