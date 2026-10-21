@@ -90,6 +90,7 @@
 
     # extras
     pkgs.distrobox
+    pkgs.feh
     pkgs.podman
     pkgs.xclip
 
