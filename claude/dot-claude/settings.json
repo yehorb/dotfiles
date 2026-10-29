@@ -36,5 +36,6 @@
   },
   "autoMemoryEnabled": false,
   "showThinkingSummaries": true,
-  "theme": "auto"
+  "theme": "auto",
+  "idleCompaction": false
 }
