@@ -1,0 +1,24 @@
+# Maintainer: Yehor Borkov <yehor.borkov@gmail.com>
+
+pkgname=cpu-boost-off-cfg
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="tmpfiles.d rule to disable CPU boost at boot"
+arch=('any')
+license=('MIT')
+depends=('systemd')
+install="$pkgname.install"
+
+source=(
+    "50-cpu-boost-off.conf"
+)
+
+sha256sums=(
+    '56fc1ba869d08d1b9a1697dd6f50724ebf683d5328890b28494ea381bae3d9f1' # 50-cpu-boost-off.conf
+)
+
+package() {
+    mkdir -p "$pkgdir/usr/lib/tmpfiles.d/"
+
+    install -m 644 "$srcdir/50-cpu-boost-off.conf" "$pkgdir/usr/lib/tmpfiles.d/50-cpu-boost-off.conf"
+}
