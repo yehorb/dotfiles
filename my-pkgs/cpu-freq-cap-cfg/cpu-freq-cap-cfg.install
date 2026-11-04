@@ -1,0 +1,19 @@
+# Apply the cap now instead of at the next boot, and lift it when the package is
+# removed. Skip when systemd isn't running, e.g. when installing into a chroot.
+post_install() {
+    [ -d /run/systemd/system ] || return 0
+    systemd-tmpfiles --create /usr/lib/tmpfiles.d/50-cpu-freq-cap.conf
+}
+
+post_upgrade() {
+    post_install
+}
+
+# Not cpuinfo_max_freq: it reads the capped frequency while boost is off.
+post_remove() {
+    [ -d /run/systemd/system ] || return 0
+    for policy in /sys/devices/system/cpu/cpufreq/policy*; do
+        [ -r "$policy/amd_pstate_max_freq" ] || continue
+        cat "$policy/amd_pstate_max_freq" > "$policy/scaling_max_freq"
+    done
+}

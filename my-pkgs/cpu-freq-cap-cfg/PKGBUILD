@@ -1,0 +1,36 @@
+# Maintainer: Yehor Borkov <yehor.borkov@gmail.com>
+
+pkgname=cpu-freq-cap-cfg
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="tmpfiles.d rule to cap the CPU at its non-boost frequency, built for this machine's CPU"
+arch=('any')
+license=('MIT')
+depends=('systemd')
+install="$pkgname.install"
+
+build() {
+    # Not cpuinfo_max_freq: it reads the boost frequency unless the active power
+    # profile has boost off, and a rule built from that value would cap nothing.
+    local nominal_mhz
+    nominal_mhz=$(sort -u /sys/devices/system/cpu/cpu*/acpi_cppc/nominal_freq)
+
+    if [[ ! $nominal_mhz =~ ^[0-9]+$ ]]; then
+        error "Expected one nominal frequency across all CPUs, got: '$nominal_mhz'"
+        return 1
+    fi
+
+    cat > 50-cpu-freq-cap.conf <<EOF
+# Cap every CPU at its nominal frequency, the most it reaches without boost: keeps
+# it cooler and leaves more of the shared laptop power budget to the GPU.
+# power-profiles-daemon owns the boost files and fails to apply profiles if global
+# boost is off, but it never writes scaling_max_freq.
+w /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq - - - - $((nominal_mhz * 1000))
+EOF
+}
+
+package() {
+    mkdir -p "$pkgdir/usr/lib/tmpfiles.d/"
+
+    install -m 644 "$srcdir/50-cpu-freq-cap.conf" "$pkgdir/usr/lib/tmpfiles.d/50-cpu-freq-cap.conf"
+}

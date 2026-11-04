@@ -1,0 +1,6 @@
+/pkg
+/src
+*.patch
+*.tar.gz
+*.tar.xz
+*.tar.zst
