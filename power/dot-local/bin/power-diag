@@ -1,0 +1,129 @@
+#!/bin/bash
+
+# Read-only power diagnostics. The GPU is inspected through cached sysfs values:
+# nvidia-smi and lspci wake a runtime-suspended NVIDIA GPU and spoil the reading.
+#
+# Usage: power-diag [sample-seconds]   (default 30, 0 skips the draw sample)
+
+seconds=${1:-30}
+
+if [[ ! $seconds =~ ^[0-9]+$ ]]; then
+  echo "Usage: power-diag [sample-seconds]" >&2
+  exit 1
+fi
+
+cpu=/sys/devices/system/cpu
+cpufreq=$cpu/cpufreq
+rapl=/sys/class/powercap/intel-rapl:0/energy_uj
+battery=$(echo /sys/class/power_supply/BAT* | cut -d' ' -f1)
+ac=$(echo /sys/class/power_supply/AC* | cut -d' ' -f1)
+
+section() { printf '\n\e[32m== %s\e[0m\n' "$1"; }
+value() { cat "$1" 2>/dev/null || echo "n/a"; }
+tally() { sort | uniq -c | xargs; }
+tally_files() { printf '%-20s %s\n' "$1:" "$(cat "${@:2}" 2>/dev/null | tally)"; }
+watts() { awk -v uw="$1" 'BEGIN { printf "%.1f W", uw / 1000000 }'; }
+
+section "System"
+echo "kernel:   $(uname -r)"
+echo "booted:   $(uptime -s)"
+echo "cpu:      $(grep -m1 'model name' /proc/cpuinfo | cut -d: -f2 | xargs)"
+echo "load:     $(cut -d' ' -f1-3 /proc/loadavg)"
+
+section "Battery"
+energy_now=$(value "$battery/energy_now")
+energy_full=$(value "$battery/energy_full")
+energy_design=$(value "$battery/energy_full_design")
+echo "ac online: $(value "$ac/online")"
+echo "status:    $(value "$battery/status") at $(value "$battery/capacity")%"
+echo "draw:      $(watts "$(value "$battery/power_now")")"
+awk -v now="$energy_now" -v full="$energy_full" -v design="$energy_design" 'BEGIN {
+  printf "energy:    %.1f of %.1f Wh, %.0f%% of the %.1f Wh design\n",
+    now / 1000000, full / 1000000, full / design * 100, design / 1000000
+}'
+
+section "Power profile"
+echo "profile:  $(powerprofilesctl get 2>/dev/null || echo n/a)"
+echo "platform: $(value /sys/firmware/acpi/platform_profile)"
+echo "saved:    ac=$(value ~/.local/state/omarchy/powerprofiles/ac) battery=$(value ~/.local/state/omarchy/powerprofiles/battery)"
+journalctl -b --no-pager -q -p warning -u power-profiles-daemon 2>/dev/null | tail -5
+
+section "CPU"
+echo "global boost:        $(value "$cpufreq/boost")"
+tally_files "boost" "$cpufreq"/policy*/boost
+tally_files "epp" "$cpufreq"/policy*/energy_performance_preference
+tally_files "governor" "$cpufreq"/policy*/scaling_governor
+tally_files "scaling_max_freq" "$cpufreq"/policy*/scaling_max_freq
+tally_files "cpuinfo_max_freq" "$cpufreq"/policy*/cpuinfo_max_freq
+tally_files "nominal_freq (MHz)" "$cpu"/cpu*/acpi_cppc/nominal_freq
+
+section "NVIDIA GPU"
+for device in /sys/bus/pci/devices/*; do
+  [[ $(<"$device/vendor") == "0x10de" ]] || continue
+  echo "$(basename "$device"): $(value "$device/power/runtime_status") $(value "$device/power_state") control=$(value "$device/power/control")" \
+    "suspended=$(($(value "$device/power/runtime_suspended_time") / 1000))s active=$(($(value "$device/power/runtime_active_time") / 1000))s"
+  for render_node in "$device"/drm/renderD*; do
+    [[ -e $render_node ]] && nvidia_nodes+="|/dev/dri/$(basename "$render_node")"
+  done
+done
+
+echo "held open by:"
+for process in /proc/[0-9]*; do
+  nodes=$(find "$process/fd" -printf '%l\n' 2>/dev/null | grep -E "^(/dev/nvidia[a-z0-9-]*$nvidia_nodes)$" | sort -u | xargs)
+  [[ -n $nodes ]] && echo "  ${process#/proc/} $(value "$process/comm"): $nodes"
+done
+
+section "Displays"
+for connector in /sys/class/drm/card*-*; do
+  echo "${connector##*/}: $(value "$connector/status"), $(value "$connector/enabled")"
+done
+hyprctl monitors 2>/dev/null | grep -E '^Monitor|^\s+[0-9]+x[0-9]+@'
+for light in /sys/class/backlight/* /sys/class/leds/*kbd_backlight; do
+  echo "${light##*/}: $(value "$light/brightness")/$(value "$light/max_brightness")"
+done
+
+section "Radios and links"
+echo "pcie aspm: $(value /sys/module/pcie_aspm/parameters/policy)"
+for interface in /sys/class/net/wl*; do
+  echo "${interface##*/}: $(iw dev "${interface##*/}" get power_save 2>/dev/null)"
+done
+bluetoothctl show 2>/dev/null | grep -m1 Powered | xargs
+bluetoothctl devices Connected 2>/dev/null
+for usb in /sys/bus/usb/devices/*/; do
+  [[ -r $usb/product && $(value "$usb/product") != "xHCI Host Controller" ]] &&
+    echo "usb: $(value "$usb/product"), max $(value "$usb/bMaxPower"), $(value "$usb/power/runtime_status")"
+done
+
+section "Logind"
+for setting in HandleLidSwitch HandleLidSwitchExternalPower HandleLidSwitchDocked; do
+  echo "$setting: $(busctl get-property org.freedesktop.login1 /org/freedesktop/login1 org.freedesktop.login1.Manager "$setting" 2>/dev/null | cut -d' ' -f2 | tr -d '"')"
+done
+
+section "Activity"
+echo "audio streams: $(pactl list short sink-inputs 2>/dev/null | wc -l)"
+top -b -n 2 -d 1 -o %CPU | awk '/^top -/ { sample++ } sample == 2' | sed -n '7,15p'
+
+((seconds > 0)) || exit 0
+
+section "Draw over ${seconds}s"
+[[ $(value "$ac/online") == 1 ]] && echo "On AC: these values describe charging, not power use"
+
+energy_start=$(value "$battery/energy_now")
+rapl_start=$(value "$rapl")
+start=$SECONDS
+
+while ((SECONDS - start < seconds)); do
+  echo "battery reports $(watts "$(value "$battery/power_now")")"
+  sleep 5
+done
+
+elapsed=$((SECONDS - start))
+awk -v used="$((energy_start - $(value "$battery/energy_now")))" -v t="$elapsed" 'BEGIN {
+  printf "energy counter: %.1f W\n", used / 1000000 * 3600 / t
+}'
+
+if [[ -r $rapl ]]; then
+  awk -v used="$(($(value "$rapl") - rapl_start))" -v t="$elapsed" 'BEGIN {
+    printf "cpu package:    %.1f W\n", used / 1000000 / t
+  }'
+fi
