@@ -5,4 +5,5 @@ hl.config({
     follow_min_visible = 0.1,
   },
 })
+hl.unbind("SUPER + SHIFT + T")
 hl.bind("SUPER + SHIFT + T", hl.dsp.layout("colresize +conf"), { description = "Toggle window column width" })
