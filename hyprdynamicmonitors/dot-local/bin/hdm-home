@@ -17,7 +17,10 @@ case "$mode" in
   notify-send "HDM" "Switched to Extend"
   ;;
 *)
-  echo "Unknown mode: $mode."
+  echo "Known modes:"
+  echo "	second_screen"
+  echo "	pc_screen"
+  echo "	extend"
   exit 1
   ;;
 esac
