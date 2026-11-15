@@ -4,5 +4,7 @@
 
 command -v flatpak >/dev/null || exit 0
 
+echo -e "\e[32m\nUpdate flatpaks\e[0m"
+
 flatpak update -y --noninteractive
 flatpak uninstall -y --noninteractive --unused
