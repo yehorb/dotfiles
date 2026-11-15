@@ -1,0 +1,4 @@
+[Warframe]
+title=Warframe
+description=Peer-to-peer squad connections (in-game Network ports)
+ports=4950,4955/udp
