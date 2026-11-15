@@ -1,0 +1,17 @@
+# Create the node now instead of at the next boot. Skip when udev isn't
+# running, e.g. when installing into a chroot.
+reload_udev() {
+    systemctl is-active --quiet systemd-udevd || return 0
+    udevadm control --reload
+    udevadm trigger --action=add --subsystem-match=module --sysname-match=nvidia_drm
+}
+
+post_install() {
+    reload_udev
+}
+
+post_upgrade() {
+    reload_udev
+}
+
+# Nothing to undo on removal: the node stays until the next boot.

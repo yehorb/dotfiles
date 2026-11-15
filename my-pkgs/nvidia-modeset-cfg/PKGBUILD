@@ -1,0 +1,24 @@
+# Maintainer: Yehor Borkov <yehor.borkov@gmail.com>
+
+pkgname=nvidia-modeset-node-cfg
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="udev rule creating /dev/nvidia-modeset at boot, so containerized games can present on the NVIDIA GPU"
+arch=('any')
+license=('MIT')
+depends=('systemd' 'nvidia-utils')
+install="$pkgname.install"
+
+source=(
+    "61-nvidia-modeset.rules"
+)
+
+sha256sums=(
+    '4d4958ff47143e31a5956bd5e18627f4d13d0f0b940a32c47e2ab94880ec05ea' # 61-nvidia-modeset.rules
+)
+
+package() {
+    mkdir -p "$pkgdir/usr/lib/udev/rules.d/"
+
+    install -m 644 "$srcdir/61-nvidia-modeset.rules" "$pkgdir/usr/lib/udev/rules.d/61-nvidia-modeset.rules"
+}
