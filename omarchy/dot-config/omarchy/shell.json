@@ -1,27 +1,59 @@
 {
-  "version": 1,
-  "idle": {
-    "screensaver": 150,
-    "lock": 300
-  },
   "bar": {
-    "position": "top",
-    "transparent": false,
+    "background": "glassy",
     "layout": {
+      "center": [
+        {
+          "format": "yyyy-MM-dd HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "id": "omarchy.clock",
+          "verticalFormat": "HH\n—\nmm"
+        }
+      ],
+      "centerBegin": [
+        {
+          "id": "omarchy.indicators"
+        }
+      ],
+      "centerEnd": [
+        {
+          "cities": [
+            {
+              "name": "Kyiv",
+              "zone": "Europe/Kyiv"
+            },
+            {
+              "name": "Tokyo",
+              "zone": "Asia/Tokyo"
+            },
+            {
+              "name": "Honolulu",
+              "zone": "Pacific/Honolulu"
+            },
+            {
+              "name": "Los Angeles",
+              "zone": "America/Los_Angeles"
+            },
+            {
+              "name": "New York",
+              "zone": "America/New_York"
+            }
+          ],
+          "id": "omarchy.elsewhen"
+        },
+        {
+          "id": "omarchy.weather"
+        },
+        {
+          "id": "omarchy.system-update"
+        }
+      ],
       "left": [
         {
           "id": "omarchy.menu"
         },
         {
           "id": "omarchy.workspaces"
-        }
-      ],
-      "center": [
-        {
-          "id": "omarchy.clock",
-          "format": "yyyy-MM-dd HH:mm",
-          "formatAlt": "d MMMM 'W'ww yyyy",
-          "verticalFormat": "HH\n—\nmm"
         }
       ],
       "right": [
@@ -47,48 +79,18 @@
           "id": "omarchy.monitor"
         },
         {
-          "id": "omarchy.power"
+          "id": "omarchy.power",
+          "showPercentage": true
         }
       ],
-      "centerBegin": [
-        {
-          "id": "omarchy.indicators"
-        }
-      ],
-      "centerEnd": [
-        {
-          "id": "omarchy.elsewhen",
-          "cities": [
-            {
-              "name": "Kyiv",
-              "zone": "Europe/Kyiv"
-            },
-            {
-              "name": "Tokyo",
-              "zone": "Asia/Tokyo"
-            },
-            {
-              "name": "Honolulu",
-              "zone": "Pacific/Honolulu"
-            },
-            {
-              "name": "Los Angeles",
-              "zone": "America/Los_Angeles"
-            },
-            {
-              "name": "New York",
-              "zone": "America/New_York"
-            }
-          ]
-        },
-        {
-          "id": "omarchy.weather"
-        },
-        {
-          "id": "omarchy.system-update"
-        }
-      ]
-    }
+      "tray": []
+    },
+    "position": "top"
   },
-  "plugins": []
+  "idle": {
+    "lock": 300,
+    "screensaver": 150
+  },
+  "plugins": [],
+  "version": 1
 }
