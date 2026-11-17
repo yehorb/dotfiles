@@ -1,0 +1,22 @@
+# The modprobe option only applies the next time btusb loads (next boot).
+# Also flip runtime PM on devices btusb already drives, so the change is
+# live right away. btusb binds interfaces (1-4:1.0, :1.1, ...); power/control
+# lives on their parent USB device. No-op when nothing is bound (e.g. chroot).
+set_btusb_power_control() {
+    for intf in /sys/bus/usb/drivers/btusb/*:*; do
+        [ -e "$intf" ] || continue
+        echo "$1" > "$(dirname "$(readlink -f "$intf")")/power/control"
+    done
+}
+
+post_install() {
+    set_btusb_power_control on
+}
+
+post_upgrade() {
+    set_btusb_power_control on
+}
+
+post_remove() {
+    set_btusb_power_control auto
+}

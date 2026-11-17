@@ -1,0 +1,28 @@
+# Maintainer: Yehor Borkov <yehor.borkov@gmail.com>
+
+pkgname=btusb-autosuspend-cfg
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="Disable USB autosuspend for btusb: a failed wake-up hangs the MT7921 Bluetooth chip until an EC reset"
+arch=('any')
+license=('MIT')
+depends=('kmod')
+install="$pkgname.install"
+
+source=(
+    "btusb-no-autosuspend.conf"
+    "README.md"
+)
+
+sha256sums=(
+    'cd671f4c20ec36763262b54c3abf6ae20283b9399f6bd1c4c4948feb08db790e' # btusb-no-autosuspend.conf
+    '74e76396d88b4666cca5d40ea801d82f1b3a0f341b8a59069d8621b606725cbb' # README.md
+)
+
+package() {
+    mkdir -p "$pkgdir/usr/lib/modprobe.d/"
+    mkdir -p "$pkgdir/usr/share/doc/$pkgname/"
+
+    install -m 644 "$srcdir/btusb-no-autosuspend.conf" "$pkgdir/usr/lib/modprobe.d/btusb-no-autosuspend.conf"
+    install -m 644 "$srcdir/README.md" "$pkgdir/usr/share/doc/$pkgname/README.md"
+}
