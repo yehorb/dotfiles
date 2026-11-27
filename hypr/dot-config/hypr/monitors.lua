@@ -36,7 +36,6 @@
 -- Variable refresh rate (0 = off, 1 = always, 2 = fullscreen only).
 -- hl.config({ misc = { vrr = 0 } })
 
--- Kept from your earlier monitors.lua, which is saved as monitors.lua.bak.1795769132.
 -- XWayland apps (Steam) get no fractional scaling with force_zero_scaling, and
 -- GDK_SCALE only takes integers. Keep it at 1 and let them scale via Xft.dpi.
 local omarchy_gdk_scale = 1
